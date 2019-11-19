@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>BeerPong | 세상의 모든 맥주</title>
+<link rel="stylesheet" href="review.css" type="text/css"/>
+<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+</head>
+
+<body>
+<p align=right p style="font-family:verdana, sans-serif"> [로그인]  [회원가입]</p>
+<header id="Title">
+      <h1>비  어  퐁</h1>
+      <p>:: beerpong ::</p>
+</header>
+
+    <button id="default" class="tab active" onclick="openMenu('HOME', this)">HOME</button>
+    <button class="tab" onclick="openMenu('REVIEW', this)">REVIEW</button>
+    <button class="tab" onclick="openMenu('MYPAGE', this)">MYPAGE</button>
+
+    <div id="HOME" class="content">
+
+  <table class = "hometable">
+  <tr>
+    <th class = "title"> [추천맥주] </th>
+    <th class = "title"> [신상맥주] </th>
+    <th class = "title"> [최신리뷰] </th>
+  </tr>
+  <tr>
+    <td class = "tableimg"> <img class = "beerimg" src = "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F258E23335978A89816"> </td>
+    <td class = "tableimg"> <img class = "beerimg" src = "https://file.mk.co.kr/meet/neds/2019/03/image_readtop_2019_149823_15524352613667037.jpg" </td>
+    <td rowspan = "2">
+     <table class="imgreview">
+      <tr>
+       <td class="logo"> <img class="logoimg" src = "https://www.cass.co.kr/images/etc/img_logo_1.jpg"></td>
+       <td class="review"> -부드럽고 상큼해요!</td>
+      </tr>
+      <tr>
+        <td class="logo"> <img class="logoimg" src = "https://www.somersby.com/inc/201907241014/image/general/somersby-logo-rgb.png"> </td>
+        <td class="review"> -과일향이 강해요.</td>
+      </tr>
+      <tr>
+        <td class="logo"> <img class="logoimg" src = "http://napervilletri.events/wp-content/uploads/2017/01/Guinness-Logo.png"></td>
+        <td class="review"> -맛이 깔끔합니다.</td>
+      </tr>
+      <tr>
+        <td class="logo"> <img class="logoimg" src = "https://cdn.freebiesupply.com/logos/large/2x/heineken-1-logo-png-transparent.png"> </td>
+        <td class="review"> -탄산이 약하고, 고소한 향이 나요.</td>
+      </tr>
+     </table></td>
+  </tr>
+  <tr>
+    <td class = "point">  <img class="star" src="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2243793E52FC36AB131898" align = "top";> 4.68 </td>
+    <td class = "point"> <img class="star" src="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2243793E52FC36AB131898" align = "top"> 3.32 </td>
+    <td></td>
+  </tr>
+  </table>
+    </div>
+
+
+   <script>
+	function openMenu(target, seltab){
+		var i, content, tab;
+		content=document.getElementsByClassName("content"); 
+		for(i=0;i<content.length;i++){
+			content[i].style.display="none";  //컨텐츠 숨기기
+		}
+		tab=document.getElementsByClassName("tab");
+		for(i=0;i<tab.length;i++){
+			tab[i].style.backgroundColor="";
+			tab[i].style.color="";
+		}
+		document.getElementById(target).style.display="block"; //해당 컨텐츠만 보이기
+		seltab.style.backgroundColor='brown';
+		seltab.style.color='white';
+}
+	document.getElementById("default").click();
+
+    </script>
+
+</body>
+</html>

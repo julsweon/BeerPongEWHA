@@ -1,0 +1,255 @@
+﻿#Title {
+    color: brown;
+    font: 20px verdana, sans-serif;
+    padding: 10px;
+    text-align: center;
+}
+
+/* tab button */
+.tab {
+    background-color: #cdd1d1;
+    color: #787a7a;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    font: 18px verdana, sans-serif;
+    width: 33.3%;
+}
+
+/* change background color when mouse over */
+.tab:hover {
+    background-color: #d9dbdb;
+}
+
+body{
+align-items: center;
+}
+
+#search_engine {
+height: 40px;
+width: 400px;
+border: 1px solid brown;
+background: #ffffff;
+margin: 0 auto;
+margin-top: 100px;
+}
+
+input{
+width: 325px;
+padding: 10px;
+border: 0px;
+outline: none;
+float: left;
+font: 15px verdana, sans-serif;
+}
+
+#search{
+width: 50px;
+height: 100%;
+border: 0px;
+background: brown;
+outline: none;
+float: right;
+color: white;
+font: 15px verdana, sans-serif;
+}
+#hashtags{
+height: 40px;
+width: 300px;
+margin: 10px auto;
+}
+.hashtag{
+border: 0px;
+outline: none;
+background: #ffffff;
+font: 15px verdana, sans-serif;
+}
+.rank{
+margin-top: 30px;
+}
+table{
+width:90%;
+margin: auto;
+}
+/*맥주이름*/
+button.ranking{
+border: 0px;
+outline: none;
+font: 25px verdana, sans-serif;
+margin: 30 auto;
+background: #ffffff;
+padding: 50px;
+}
+/*맥주사진*/
+.rank img .beer{
+height: 5%;
+width: 90px;
+overflow:hidden;
+
+}
+.Ranknum{
+    font-style: bold;
+    font: 40px verdana, sans-serif;
+}
+
+.rank tbody td{
+    text-align:center;
+    padding:5px 0;
+    border-bottom:1px solid #CCC; 
+}
+p.score{
+    font-style: bold;
+    font: 20px verdana, sans-serif;
+}
+
+/*review2*/
+.beerreview{
+text-align: center;
+font-style: bold;
+font: 20px verdana, sans-serif;
+}
+#writereview{
+height: 45px;
+width: 350px;
+border: 0px;
+background: brown;
+color: white;
+font: 20px verdana, sans-serif;
+}
+.beerimg{
+height: 35%;
+width: 300x;
+overflow:hidden;
+}
+/*review3*/
+#reviewpage{
+height: 40px;
+width: 800px;
+margin: 10px auto;
+text-align: center;
+font: 20px verdana, sans-serif;
+}
+.hashtag2{
+border: 0px;
+outline: none;
+background-color: white;
+font: 18px verdana, sans-serif;
+}
+#review{
+height: 250px;
+width: 1200px;
+border: 2px solid brown;
+background: white;
+margin: 0 auto;
+margin-top: 100px;
+}
+
+/*home 부분 css*/
+
+.hometable{
+    width : 100%;
+    table-layout: fixed;
+}
+
+.title {
+    text-align: center;
+    font-style: bold;
+    font: 30px verdana, sans-serif;
+    padding : 10px;
+    margin: 10px;
+    width : 33%;
+}
+
+.tableimg {
+    width : 33%;
+    height: auto;
+    max-width: 33%;
+    max-height: auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.beerimg {
+    width: auto;
+    max-width : 100%; 
+    max-height: 350px; 
+    padding: 10px;
+}
+
+.point {
+    text-align: center;
+    font: 20px verdana, sans-serif;
+    padding : 10px;
+}
+
+.star {
+    width : auto;
+    height: auto;
+    max-width: 50px;
+    max-height: 30px;
+}
+
+.imgreview{
+    text-align: center;
+    padding-left : 20px;
+}
+
+.logo {
+    width: 50px;
+    height: 48px;
+    border-bottom: 0.5px solid gray;
+}
+
+.logoimg {
+    width : auto;
+    height : 50px;
+    text-align: center;
+    padding : 10px;
+}
+
+.review {
+    width : 400px;
+    text-align : left;
+    font-style : bold;
+    font: sans-serif;
+    border-bottom: 0.5px solid gray; 
+    padding : 10px;
+}
+
+
+
+/*myPage 부분 css*/
+.myProfile {
+margin-top: 100px;
+margin-left: 35%;
+margin-right: 35%;
+margin-bottom: 50px;
+padding: 0px auto;
+height: 200px;
+width:400px;
+align-items: center;
+font: 15px verdana, sans-serif;
+}
+
+.myMenu{
+align-items: auto;
+margin: 10px auto;
+padding: 0px 50px;
+height: 500px;
+}
+
+#myPageMenu{
+margin: 10px 10px;
+padding: 10px 20px;
+height: 430px;
+font: 15px verdana, sans-serif;
+background: #f9f2ec;
+}
+
+#preference{
+margin: 40px auto;
+padding: 5px 5px;
+background: white;
+}
