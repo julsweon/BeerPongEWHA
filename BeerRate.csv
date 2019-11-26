@@ -1,3 +1,6 @@
+//crawling from beeradvocate.'//
+//beer rank / beer ID / beer name / beer score//
+
 (1,148,'Kentucky Brunch Brand Stout' ,4.9 )
 (2,163,'Marshmallow Handjee' ,4.81 )
 (3,21,'Hunahpu's Imperial Stout - Double Barrel Aged' ,4.79 )
@@ -36,7 +39,7 @@
 (36,217,'Doubleganger' ,4.67 )
 (37,45,'Fuzzy' ,4.66 )
 (38,73,'Westly' ,4.66 )
-(39,93,'Double Citra¢ç' ,4.66 )
+(39,93,'Double CitraÂ¢Ã§' ,4.66 )
 (40,234,'Ann' ,4.66 )
 (41,91,'Hunahpu's Imperial Stout' ,4.65 )
 (42,109,'King Sue' ,4.65 )
@@ -94,7 +97,7 @@
 (94,105,'Pseudo Sue - Double Dry-Hopped' ,4.59 )
 (95,170,'Trappistes Rochefort ' ,4.59 )
 (96,208,'A Deal With The Devil' ,4.59 )
-(97,29,'¡×ucaba' ,4.58 )
+(97,29,'Â¡Ã—ucaba' ,4.58 )
 (98,32,'Coffee Cinnamon B-Bomb' ,4.58 )
 (99,33,'Beyond Good And Evil' ,4.58 )
 (100,123,'It Was All A Dream' ,4.58 )
@@ -106,7 +109,7 @@
 (106,62,'Miami Madness' ,4.57 )
 (107,112,'Pirate Paradise' ,4.57 )
 (108,154,'Cutting Tiles (Mosaic)' ,4.57 )
-(109,168,'Bl?b©¡r Lambik' ,4.57 )
+(109,168,'Bl?bÂ©Â¡r Lambik' ,4.57 )
 (110,172,'Samuel Adams Utopias' ,4.57 )
 (111,181,'The Rusty Nail' ,4.57 )
 (112,194,'Pirate Bomb!' ,4.57 )
