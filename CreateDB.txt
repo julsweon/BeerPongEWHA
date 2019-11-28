@@ -1,0 +1,11 @@
+create database beerpong;
+grant select, insert, delete, update on beerpong.* to 'jw' identified by 'jw123';
+use beerpong;
+CREATE TABLE Customers
+( Customer_ID CHAR(20) NOT NULL PRIMARY KEY, Customer_PW CHAR(32) NOT NULL, Customer_Name VARCHAR(45) NOT NULL, 
+Customer_Email CHAR(45) NOT NULL, Taste_Smell INT(10) UNSIGNED, Taste_Look INT(10) UNSIGNED, Taste_Taste INT(10) UNSIGNED, 
+favoritebeer INT(10) UNSIGNED );
+
+CREATE TABLE beers(
+Beer_ID INT(10) UNSIGNED NOT NULL PRIMARY KEY, Beer_Rank INT(10) UNSIGNED, Beer_Name VARCHAR(45) NOT NULL, Beer_Origin VARCHAR(45), Beer_Hashtag1 INT(11), Beer_Hashtag2 INT(11), Beer_Hashtag3 INT(11), Beer_Info TINYTEXT, Beer_TotalScore FLOAT
+);
