@@ -2,23 +2,37 @@
 <html>
 <head>
 <title>BeerPong | 세상의 모든 맥주</title>
-<link rel="stylesheet" href="review.css" type="text/css"/>
+<link rel="stylesheet" href="beerpong.css" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 </head>
 
 <body>
-<p align=right p style="font-family:verdana, sans-serif"> [로그인]  [회원가입]</p>
-<header id="Title">
-      <h1>비  어  퐁</h1>
-      <p>:: beerpong ::</p>
-</header>
-
-    <button id="default" class="tab active" onclick="openMenu('HOME', this)">HOME</button>
-    <button class="tab" onclick="openMenu('REVIEW', this)">REVIEW</button>
-    <button class="tab" onclick="openMenu('MYPAGE', this)">MYPAGE</button>
+<?php
+	session_start();
+	if(isset($_SESSION['id'])){
+?>
+<p align="right" style="color:#222222">
+<?php	echo $_SESSION['id'].'님 안녕하세요';?>
+<button class="do_login" onclick="location.href='logout.php'">[로그아웃]</button>
+</p>
+<?php
+} else{
+?>
+<p align="right" style="color:#222222">
+<button class="do_login" onclick="location.href='login.html'">[로그인]</button> |
+<button class="do_login" onclick="location.href='join.html'">[회원가입]</button>
+</p>
+<?php
+}
+?>
+<p align="center">
+<button id="main_title" onclick="location.href='home.php'">비  어  퐁</button>
+</p>
+    <button id="tab1" onclick="location.href='home.php'">HOME</button>
+    <button class="tab" onclick="location.href='review.php'">REVIEW</button>
+    <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>
 
     <div id="HOME" class="content">
-
   <table class = "hometable">
   <tr>
     <th class = "title"> [추천맥주] </th>
@@ -49,33 +63,12 @@
      </table></td>
   </tr>
   <tr>
-    <td class = "point">  <img class="star" src="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2243793E52FC36AB131898" align = "top";> 4.68 </td>
-    <td class = "point"> <img class="star" src="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2243793E52FC36AB131898" align = "top"> 3.32 </td>
+    <td class = "point"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"> 4.68 </td>
+    <td class = "point"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"> 3.32 </td>
     <td></td>
   </tr>
   </table>
     </div>
-
-
-   <script>
-	function openMenu(target, seltab){
-		var i, content, tab;
-		content=document.getElementsByClassName("content"); 
-		for(i=0;i<content.length;i++){
-			content[i].style.display="none";  //컨텐츠 숨기기
-		}
-		tab=document.getElementsByClassName("tab");
-		for(i=0;i<tab.length;i++){
-			tab[i].style.backgroundColor="";
-			tab[i].style.color="";
-		}
-		document.getElementById(target).style.display="block"; //해당 컨텐츠만 보이기
-		seltab.style.backgroundColor='brown';
-		seltab.style.color='white';
-}
-	document.getElementById("default").click();
-
-    </script>
 
 </body>
 </html>
