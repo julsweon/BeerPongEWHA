@@ -140,16 +140,16 @@ switch($stars_TotalScore) {
         BeerScore
     )
     VALUES (
-		$Review_ID_new,
-		$Review_Beer_ID,
-		$review,
-		$$Review_Hashtag1,
-		$$Review_Hashtag1,
-		$$Review_Hashtag1,
-		$stars_Sugar,
-		$stars_Sour,
-		$stars_Flavor,
-		$stars_TotalScore
+		'".$Review_ID_new."',
+		'".$Review_Beer_ID."',
+		'".$review."',
+		'".$$Review_Hashtag1."',
+		'".$$Review_Hashtag1."',
+		'".$$Review_Hashtag1."',
+		'".$stars_Sugar."',
+		'".$stars_Sour."',
+		'".$stars_Flavor."',
+		'".$stars_TotalScore."'
     )";
 
     $result=$db->query($sql);

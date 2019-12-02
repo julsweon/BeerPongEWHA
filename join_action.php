@@ -27,7 +27,7 @@ if($id==NULL|| $pw==NULL|| $name==NULL|| $email==NULL){
 
 $mysqli=mysqli_connect("localhost", "root","1234", "beerpong");
 
-$check ="SELECT * FROM Customers WHERE Customer_ID='$id'";
+$check ="SELECT * FROM customer WHERE Customer_ID='$id'";
 $result=$mysqli->query($check);
 $num=mysqli_num_rows($result);
 if($num==1){
@@ -36,7 +36,7 @@ if($num==1){
 	exit();
 }
 $password=md5($pw);
-$query="INSERT INTO Customers (Customer_ID, Customer_PW, Customer_Name, Customer_Email) VALUES('".$id."', '".$password."', '".$name."', '".$email."')";
+$query="INSERT INTO customer (Customer_ID, Customer_PW, Customer_Name, Customer_Email) VALUES('".$id."', '".$password."', '".$name."', '".$email."')";
 $signup=mysqli_query($mysqli, $query);
 if($signup){
 	echo "<script> alert('회원가입 완료');</script>";

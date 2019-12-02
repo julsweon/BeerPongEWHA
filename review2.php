@@ -44,12 +44,21 @@ $searchterm=$_POST["searchterm"];
 
 $db = mysqli_connect('localhost','root','1234','beerpong');
 
-$query="SELECT * FROM Beers WHERE Beer_Name='$searchterm'";
+$query="SELECT * FROM beers WHERE Beer_Name='$searchterm'";
+
+$check=mysqli_query($db,$query);
+$num=mysqli_num_rows($check);
 
 if(!$searchterm) {
-	echo "<script>alert('없는 맥주입니다.');</script>";
+	echo "<script>alert('맥주 이름을 입력하세요.');</script>";
 	echo "<script>location.href = 'review.php' </script>";
 	exit();
+}
+
+elseif($num<1){
+	#echo "<script>alert('존재하지 않는 맥주입니다.');</script>";
+	#echo "<script>location.href = 'review.php' </script>";
+	#exit();	
 }
 
 else {
