@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>BeerPong | 세상의 모든 맥주</title>
+<link rel="stylesheet" href="beerpong.css" type="text/css"/>
+<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+</head>
+
+<body>
+<p align="right" style="#222222">
+<button class="do_login" onclick="location.href='login.html'">[로그인]</button> |
+<button class="do_login" onclick="location.href='join.html'">[회원가입]</button>
+</p>
+<p align="center">
+<button id="main_title" onclick="location.href='home.php'">비  어  퐁</button>
+</p>
+
+    <button class="tab"onclick="location.href='home.php'">HOME</button>
+    <button class="tab" onclick="location.href='review.php'">REVIEW</button>
+    <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>
+<form method="post" action="join_action.php">
+<p id="login">아이디</p>
+<div id="login_engine">
+<div>
+<input type="text" name="my_id" class="loginbox"></div>
+</div>
+
+<p id="login">비밀번호</p>
+<div id="login_engine">
+<div>
+<input type="password" name="my_password" class="loginbox"></div>
+</div>
+
+<p id="login">비밀번호 재확인</p>
+<div id="login_engine">
+<div>
+<input type="password" name="my_password2" class="loginbox"></div>
+</div>
+
+<p id="login">이름</p>
+<div id="login_engine">
+<div>
+<input type="text" name="my_name" class="loginbox"></div>
+</div>
+
+<p id="login">이메일</p>
+<div id="login_engine">
+<div>
+<input type="text" name="my_mail" class="loginbox"></div>
+</div>
+
+
+<p align="center"><button id="loginbutton" onclick="location.href='home.php'">가입하기</button></p>
+</form>
+</body>
+</html>
