@@ -5,4 +5,5 @@ CREATE TABLE IF NOT EXISTS Customers (
   Taste_Sugar INT(10)UNSIGNED NULL,
   Taste_Sour INT(10)UNSIGNED NULL,
   Taste_Flavor INT(10)UNSIGNED NULL,
+  Customer_Email VARCHAR(45) NOT NULL,
   PRIMARY KEY (Customer_ID));

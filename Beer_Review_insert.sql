@@ -1,4 +1,4 @@
-INSERT INTO Beer_Reviews (Review_Beer_Id, review_ID, Review, Review_Hashtag1, Review_Hashtag2, Review_Hashtag3, Taste_Sugar, Taste_Sour, Taste_Flavor, BeerScore)
+INSERT INTO Beer_Reviews (Review_Beer_ID, Review_ID, Review, Review_Hashtag1, Review_Hashtag2, Review_Hashtag3, Taste_Sugar, Taste_Sour, Taste_Flavor, BeerScore)
 VALUES
 (1,1,"메이플 시럽, 커피, 바닐라 향이 좋고, 부드러워요.",8,12,15,5,3,5,5),
 (1,2,"맥주 중 최고의 향입니다!",2,8,15,4,4,4,5),

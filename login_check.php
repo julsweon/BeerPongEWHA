@@ -7,12 +7,13 @@
 session_start();
 $id=$_POST['my_id'];
 $pw=$_POST['my_password'];
+
 $mysqli=mysqli_connect("localhost", "root", "1234", "beerpong");
 if (!$mysqli){
 	die("Connection failed: ".mysqli_connect_error());
 }
 /*id가 있는지 검사*/
-$check="SELECT * FROM Customer WHERE Customer_ID='$id'";
+$check="SELECT * FROM customers WHERE Customer_ID='$id'";
 $result=$mysqli-> query($check);   //해당 고객 행가져옴
 
 /*id가 있다면 비밀번호 검사*/

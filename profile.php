@@ -49,7 +49,7 @@
 </div>
 
 <p id="login">< 나의 맛 취향 ><br><br>
-외관
+당도
 <select name="stars">
 <option value="0" selected="selected"></option></selected>
 <option value="1">★</option>
@@ -58,7 +58,7 @@
 <option value="4">★ ★ ★ ★</option>
 <option value="5">★ ★ ★ ★ ★</option></select>
 <br>
-향
+산미
 <select name="stars">
 <option value="0" selected="selected"></option></selected>
 <option value="1">★</option>
@@ -76,15 +76,7 @@
 <option value="4">★ ★ ★ ★</option>
 <option value="5">★ ★ ★ ★ ★</option></select>
 <br>
-총점
-<select name="stars">
-<option value="0" selected="selected"></option></selected>
-<option value="1">★</option>
-<option value="2">★ ★</option>
-<option value="3">★ ★ ★</option>
-<option value="4">★ ★ ★ ★</option>
-<option value="5">★ ★ ★ ★ ★</option></select>
-<br>
+
 </p>
 
 

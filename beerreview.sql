@@ -1,12 +1,12 @@
 CREATE TABLE IF NOT EXISTS Beer_Review (
   Review TEXT(50) NULL,
+  Review_ID INT(10)UNSIGNED NULL,
   Review_Hashtag1 INT(10)UNSIGNED NULL,
-  Reveiw_Hashtag2 INT(10)UNSIGNED NULL,
+  Review_Hashtag2 INT(10)UNSIGNED NULL,
   Review_Hashtag3 INT(10)UNSIGNED NULL,
   Taste_Sugar INT(10)UNSIGNED NULL,
   Taste_Sour INT(10)UNSIGNED NULL,
-  Tast_Flavor INT(10)UNSIGNED NULL,
+  Taste_Flavor INT(10)UNSIGNED NULL,
   BeerScore FLOAT UNSIGNED NOT NULL,
-  Hashtag_Hashtag_ID INT(10)UNSIGNED NOT NULL,
-  Beer_Score_Beer_ID INT(10)UNSIGNED NOT NULL,
-  PRIMARY KEY (Beer_ID, Hashtag_Hashtag_ID, Beer_Score_Beer_ID));
+  Review_Beer_ID INT(10)UNSIGNED NULL,
+  PRIMARY KEY (Review_ID));

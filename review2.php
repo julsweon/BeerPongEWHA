@@ -44,10 +44,8 @@ $searchterm=$_POST["searchterm"];
 
 $db = mysqli_connect('localhost','root','1234','beerpong');
 
-$query="SELECT * FROM beers WHERE Beer_Name='$searchterm'";
-
-$check=mysqli_query($db,$query);
-$num=mysqli_num_rows($check);
+$findBeerID="SELECT EXISTS (SELECT Beer_ID FROM beers WHERE Beer_Name='$searchterm') AS SUCCESSS";
+$queryfindBeerID = mysqli_fetch_array(mysqli_query($db, $findBeerID));
 
 if(!$searchterm) {
 	echo "<script>alert('맥주 이름을 입력하세요.');</script>";
@@ -55,16 +53,18 @@ if(!$searchterm) {
 	exit();
 }
 
-elseif($num<1){
-	#echo "<script>alert('존재하지 않는 맥주입니다.');</script>";
-	#echo "<script>location.href = 'review.php' </script>";
-	#exit();	
+#DB에 없는 맥주일 경우 없다는 알림 나타내는 작동 필요
+elseif ($queryfindBeerID[0]==0) {
+	echo "<script>alert('존재하지 않는 맥주입니다.');</script>";
+	echo "<script>location.href = 'review.php' </script>";
+	exit();	
 }
 
+#
 else {
 ?>
 
-
+#DB에 존재하는 맥주일 경우
 <div id="hashtags">
 <button class="hashtag"> #향긋한 </button>
 <button class="hashtag"> #새콤한 </button>
@@ -72,13 +72,16 @@ else {
 <button class="hashtag"> #깊은 </button>
 </div>
 
+<?php 
+	
+?>
 
 <table class="beerreview">
 <tr> <td rowspan="7" width=10><p class="Ranknum">1</p> </td> </tr>
 <tr> <td rowspan="7" width=10><img class ="beer"  src="https://cdn11.bigcommerce.com/s-0294a/images/stencil/1280x1280/products/8029/12648/hoegaarden__80083.1563531641.jpg?c=2&imbypass=on" width="350" height="500"/></td></tr>
-<tr><td></td></tr>
+<tr><td>맥주명</td></tr>
 <tr><td><p style="font-size:25px"></p>
-	<p><img src="http://world.moleg.go.kr/oweb/images/countryFlag/BE_L.png" width="30" height="25" float="left"/>     $stmt->Beer_Origin</p>
+	<p><img src="http://world.moleg.go.kr/oweb/images/countryFlag/BE_L.png" width="30" height="25" float="left"/>   beer_origin</p>
 	<p>#4.9도 #밀맥주 #부드러운 #과일향</p>
 	<p>1445년 비가르덴 지방의 수도원 문화가 최상의 밀을 생산하는 호가든 마을로 전파되며 시작된 호가든 맥주, 호가든 마을 사람들은 자연에서 얻은 최상의 밀을 수확하여 깨끗한 재료를 엄선해 여과를 거치지 않은 백색의 맥주를 만들어 냈습니다.</p>
 	<table id="preference">

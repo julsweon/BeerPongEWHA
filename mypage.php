@@ -37,17 +37,19 @@ if(!isset($_SESSION['id'])){
 			location.replace('login.html')</script>";
 }
 ?>
+
    <div id="MYPAGE" class="content">   
 <section class="myProfile">
     <h3> 나의 프로필 </h3>
     <table>
     <tr><td><image src = "https://cdn2.iconfinder.com/data/icons/user-people-4/48/6-512.png" width=100 height=100></td>
-    <td>이름: 김이화 <p>아이디: beerpong_1</td></tr></table>
+    <td>이름: 
+
+    <p>아이디: <?php	echo $_SESSION['id'].'';?></td></tr></table>
     <p align="right">
     <button class="do_login" onclick="location.href='profile.php'">[정보 수정]</button>
     </p>
     </section>
-
     <section class="myMenu">
     <table>
     <tr> <td width=33.3%><article id="myPageMenu"><header><h3>맛 취향</h3></header>
@@ -61,9 +63,7 @@ if(!isset($_SESSION['id'])){
 	<tr><td>풍미 </td>
 	<td><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25">
 	</td></tr>
-	<tr><td>과일향</td>
-	<td><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25">
-	</td></tr></table>
+	</table>
     <table id="preference">
 	<tr><td>#향긋한 #달달한 #홉향</td></tr>
 	<tr><td>#진한 #국산 #과일향</td></tr>
