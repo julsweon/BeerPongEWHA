@@ -48,14 +48,14 @@
 <div id="reviewpage">
 <form action="writereview.php" method = "post">
 
-외관 <select name="stars_Sugar">
+당도 <select name="stars_Sugar">
 <option value="0" selected="selected">별점 선택</option></selected>
 <option value="1" name="stars_Sugar">★</option>
 <option value="2" name="stars_Sugar">★ ★</option>
 <option value="3" name="stars_Sugar">★ ★ ★</option>
 <option value="4" name="stars_Sugar">★ ★ ★ ★</option>
 <option value="5" name="stars_Sugar">★ ★ ★ ★ ★</option></select>&nbsp&nbsp&nbsp
-향 <select name="stars_Sour">
+산미 <select name="stars_Sour">
 <option value="0" selected="selected">별점 선택</option></selected>
 <option value="1" name="stars_Sour">★</option>
 <option value="2" name="stars_Sour">★ ★</option>
@@ -94,6 +94,6 @@
 <div id="review">
 <input class="reviewbox" type="text" placeholder="리뷰를 작성해주세요" name="review">
 </div>
-<p align="center"><button id = "searchbox" type = "submit" name="submit"> 작성 완료</button></p>
+<p align="center"><button id = "writereview" type = "submit" name="submit"> 작성 완료</button></p>
 </body>
 </html>
