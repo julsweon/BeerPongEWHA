@@ -43,7 +43,10 @@
     </div>
 
 <div id="REVIEW" class="content">
-<br><p class="Ranknum" p align="center" name="Review_Beer_ID"> <호가든 (Hoegaarden)></p>
+<?php
+$db = mysqli_connect('localhost','root','1234','beerpong');
+?>
+<br><p class="Ranknum" p align="center" name="Review_Beer_ID"> <strong><?php echo $_SESSION["beername"]?></strong></p>
 
 <div id="reviewpage">
 <form action="writereview.php" method = "post">
@@ -77,7 +80,7 @@
 <option value="4" name="stars_TotalScore">★ ★ ★ ★</option>
 <option value="5" name="stars_TotalScore">★ ★ ★ ★ ★</option></select>&nbsp&nbsp&nbsp
 <br><br>
-<button class="hashtag2" name="Hashtag"> #쌉싸름한 </button>
+<!--<button class="hashtag2" name="Hashtag"> #쌉싸름한 </button>
 <button class="hashtag2" name="Hashtag"> #청량한 </button>
 <button class="hashtag2" name="Hashtag"> #은은한 </button>
 <button class="hashtag2" name="Hashtag"> #깔끔한 </button>
@@ -89,7 +92,7 @@
 <button class="hashtag2" name="Hashtag"> #향긋한 </button>
 <button class="hashtag2" name="Hashtag"> #새콤한 </button>
 <button class="hashtag2" name="Hashtag"> #달콤한 </button>
-<button class="hashtag2" name="Hashtag"> #깊은 </button>
+<button class="hashtag2" name="Hashtag"> #깊은 </button>-->
 </div>
 <div id="review">
 <input class="reviewbox" type="text" placeholder="리뷰를 작성해주세요" name="review">

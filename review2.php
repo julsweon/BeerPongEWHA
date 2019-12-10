@@ -1,45 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>BeerPong | 세상의 모든 맥주</title>
-<link rel="stylesheet" href="beerpong.css" type="text/css"/>
-<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
-</head>
-
-<body>
-<?php
-	session_start();
-	if(isset($_SESSION['id'])){
-?>
-<p align="right" style="color:#222222">
-<?php	echo $_SESSION['id'].'님 안녕하세요';?>
-<button class="do_login" onclick="location.href='logout.php'">[로그아웃]</button>
-</p>
-<?php
-} else{
-?>
-<p align="right" style="color:#222222">
-<button class="do_login" onclick="location.href='login.html'">[로그인]</button> |
-<button class="do_login" onclick="location.href='join.html'">[회원가입]</button>
-</p>
-<?php
-}
-?>
-<p align="center">
-<button id="main_title" onclick="location.href='home.php'">비  어  퐁</button>
-</p>
-
-    <button class="tab"onclick="location.href='home.php'">HOME</button>
-    <button id="tab1" onclick="location.href='review.php'">REVIEW</button>
-    <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>
-
-   <div id="REVIEW" class="content">
-<div id="search_engine">
-<input type="text" placeholder="맥주이름을 입력하세요" class="searchbox">
-<button id="search"> 검색</button> 
-</form>
-</div>
-
 <?php
 $searchterm=$_POST["searchterm"];
 $db = mysqli_connect('localhost','root','1234','beerpong');
@@ -62,6 +20,7 @@ else {
 	$BeerIDSQL="SELECT Beer_ID FROM Beers WHERE Beer_NAME='$searchterm'";
 	$BeerID=mysqli_fetch_array(mysqli_query($db,$BeerIDSQL));
 	$SelectedBeerID=$BeerID[0];
+	$_SESSION["beerID"]=$SelectedBeerID;
 
 	//맥주랭킹
 	$BeerRank="SELECT Beer_Rank FROM Beers WHERE Beer_ID='$SelectedBeerID'";
@@ -112,38 +71,109 @@ else {
 	$people="SELECT COUNT(Review_ID) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
 	$Selectedpeople=mysqli_fetch_array(mysqli_query($db,$people));
 
+	//Sour 점수
+	$Beer_Sour="SELECT Taste_Sour FROM Beer_Score WHERE Beer_ID='$SelectedBeerID'";
+	$SelectedSour=mysqli_fetch_array(mysqli_query($db,$Beer_Sour));
+
+	//Sugar 점수
+	$Beer_Sugar="SELECT Taste_Sugar FROM Beer_Score WHERE Beer_ID='$SelectedBeerID'";
+	$SelectedSugar=mysqli_fetch_array(mysqli_query($db,$Beer_Sugar));
+
+	//Flavor 점수
+	$Beer_Flavor="SELECT Taste_Flavor FROM Beer_Score WHERE Beer_ID='$SelectedBeerID'";
+	$SelectedFlavor=mysqli_fetch_array(mysqli_query($db,$Beer_Flavor));
+
+	//review 평점 계산
+	$ReviewTotalScore="SELECT AVG(BeerScore) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
+	$SelectedReviewTotalScore=mysqli_fetch_array(mysqli_query($db,$Beer_Flavor));
+
 
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>BeerPong | 세상의 모든 맥주</title>
+<link rel="stylesheet" href="beerpong.css" type="text/css"/>
+<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+</head>
 
-<div id="hashtags">
-<button class="hashtag"> #향긋한 </button>
-<button class="hashtag"> #새콤한 </button>
-<button class="hashtag"> #과일향 </button>
-<button class="hashtag"> #깊은 </button>
+<body>
+<?php
+	session_start();
+	if(isset($_SESSION['id'])){
+?>
+<p align="right" style="color:#222222">
+<?php	echo $_SESSION['id'].'님 안녕하세요';?>
+<button class="do_login" onclick="location.href='logout.php'">[로그아웃]</button>
+</p>
+<?php
+} else{
+?>
+<p align="right" style="color:#222222">
+<button class="do_login" onclick="location.href='login.html'">[로그인]</button> |
+<button class="do_login" onclick="location.href='join.html'">[회원가입]</button>
+</p>
+<?php
+}
+?>
+<p align="center">
+<button id="main_title" onclick="location.href='home.php'">비  어  퐁</button>
+</p>
+
+    <button class="tab"onclick="location.href='home.php'">HOME</button>
+    <button id="tab1" onclick="location.href='review.php'">REVIEW</button>
+    <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>
+
+<p> &nbsp; &nbsp; &nbsp;</p>
 </div>
 
-<!--//별점 개수 맞춰서 구현하기 & REVIEW3 넘어갈 때 맥주 정보들 MOVE & REVIEW2에서 FORM REVIEW2 안먹히는 이유-->
 <table class="beerreview">
 <tr> <td rowspan="7" width=10><p class="Ranknum"><?php echo "".$SelectedBeerRank[0]."" ?></p> </td> </tr>
 <tr> <td rowspan="7" width=10><img class ="beer" src="<?php echo"".$SelectedBeerImg[0].""?>" width="350" height="500"/></td></tr>
-<tr><td><?php echo "".$SelectedBeerName[0]."" ?></td></tr>
+<tr><td><font size="20"><strong> <?php echo "".$SelectedBeerName[0]."" ?> </strong></font></td></tr>
+<?php 
+	$_SESSION["beername"]=$SelectedBeerName[0];
+	$_SESSION["beerID"]=$SelectedBeerID;
+?>
 <tr><td><p style="font-size:25px"></p>
-	<p><img src="http://world.moleg.go.kr/oweb/images/countryFlag/BE_L.png" width="30" height="25" float="left"/> <?php echo "".$SelectedBeerOrigin[0]."" ?> </p>
-	<p><?php echo "#".$printBeerHashtag1[0]." #".$printBeerHashtag2[0]." #".$printBeerHashtag3[0]."" ?></p>
-	<p><?php echo "".$SelectedBeerInfo[0]."" ?></p>
+	<p> <?php echo "".$SelectedBeerOrigin[0]."" ?> </p>
+	<p><font size="1"><?php echo "#".$printBeerHashtag1[0]." #".$printBeerHashtag2[0]." #".$printBeerHashtag3[0]."" ?></font></p>
+	<p align = "left"><?php echo "".$SelectedBeerInfo[0]."" ?></p>
 	<table id="preference">
-        <tr><td>외관</td> 
-	<td><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+        <tr><td>당도</td> 
+	<td>
+		<?php
+		$i = 0;
+		for($i=0; $i< $SelectedSugar[0]; $i++) { ?>
+			<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+		<?php }
+		?>
 	</td></tr>
-	<tr><td>향</td>
-	<td><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+	<tr><td>산미</td>
+	<td><?php
+		$i = 0;
+		for($i=0; $i< $SelectedSour[0]; $i++) { ?>
+			<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+		<?php }
+		?>
 	</td></tr>
 	<tr><td>풍미</td>
-	<td><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+	<td><?php
+		$i = 0;
+		for($i=0; $i< $SelectedFlavor[0]; $i++) { ?>
+			<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+		<?php }
+		?>
 	</td></tr>
-	<tr><td>총점</td>
-	<td><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+	<tr><td>전문가 평점</td>
+	<td> <?php
+		$i = 0;
+		for($i=0; $i<$SelectedBeerTotalScore[0]; $i++) { ?>
+			<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+		<?php 
+		}
+		?>
 	</td></tr></table>
 </td></tr>
 </table>
@@ -151,29 +181,31 @@ else {
 }
 ?>
 
-<p class="beerreview"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><?php echo $SelectedBeerTotalScore[0]?>  (<?".$SelectedPeople[0]."?> 명 참여) </p>
+<p class="beerreview"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><?php echo $SelectedReviewTotalScore[0]?> (<?php echo $Selectedpeople[0] ?> 명 참여) </p>
 <p align="center"><button id="writereview" onclick="location.href='review3.php'">REVIEW 작성하기</button></p>
-</p>
 
-<div class="rank">
-<table>
-<tbody>
-<tr>
-<td width="25%"><image src = "https://cdn2.iconfinder.com/data/icons/user-people-4/48/6-512.png" width=100 height=100></td>
-<td width="65%"><p id="reviewscore">3.75/5</p>
-	<p id="reviewdate">외관: 5 | 향: 2 | 풍미: 4 | 총점: 4</p>
-	<p id="reviewtext">깔끔하고 맛있어요! 추천합니다.</p>
-	<p id="reviewdate">2019.11.24 beerpong_1</p></td>
-</tr>
-<tr>
-<td width="25%"><image src = "https://cdn2.iconfinder.com/data/icons/user-people-4/48/6-512.png" width=100 height=100></td>
-<td width="65%"><p id="reviewscore">4.25/5</p>
-	<p id="reviewdate">외관: 4 | 향: 3 | 풍미: 5 | 총점: 5</p>
-	<p id="reviewtext">부드럽고 상큼한 맛</p>
-	<p id="reviewdate">2019.11.23 beerpong_2</p></td>
-</tr>
-      </tbody>
-    </table>
+<p> &nbsp; &nbsp; &nbsp;</p>
+<p> &nbsp; &nbsp; &nbsp;</p>
+
+</p>
+<?php 
+$mysqli=mysqli_connect("localhost", "root", "1234", "beerpong");
+$check="SELECT * FROM beer_review WHERE Review_Beer_ID='$SelectedBeerID'";
+$result=$mysqli-> query($check);   //해당 고객 행가져옴
+while($row=mysqli_fetch_array($result)){
+	echo '<div class="rank"> <table> <tbody> <tr> ';
+	echo '<td width="35%"> <image src = "https://cdn2.iconfinder.com/data/icons/user-people-4/48/6-512.png" width=100 height=100></td>';
+	echo '<td width="65%">';
+	echo '<p id="reviewscore">'; print($row['Reviewer_ID']); echo '<br></p>';
+	echo '<p id="reviewdate">';
+	echo '당도 : '; print($row['Taste_Sugar']);	echo '|';
+	echo '산미 : '; print($row['Taste_Sour']);	echo '|';
+	echo '풍미 : '; print($row['Taste_Flavor']);	echo '|';
+	echo '총점 : '; print($row['BeerScore']);	echo '<br></p>';
+	echo '<p id="reviewtext">';print($row['Review']);echo '</p>';
+	echo '</p></td></table>';
+}
+ ?>
 </div>
 
 

@@ -43,6 +43,7 @@
 <form action = "review2.php" method="post">
 <input type="text"  placeholder="맥주이름을 입력하세요" class="searchbox" name="searchterm" size="50"></div>
 <button id="search" type = "submit" name="submit"> 검색</button>
+</form>
 </div>
 
 <div id="hashtags">

@@ -9,4 +9,6 @@ CREATE TABLE IF NOT EXISTS Beer_Review (
   Taste_Flavor INT(10)UNSIGNED NULL,
   BeerScore FLOAT UNSIGNED NOT NULL,
   Review_Beer_ID INT(10)UNSIGNED NULL,
-  PRIMARY KEY (Review_ID));
+  Reviewer_ID char(20) NOT NULL,
+  PRIMARY KEY (Review_ID)
+  );

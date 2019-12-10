@@ -11,6 +11,8 @@
 <?php
 session_start();
 $reviewer_ID=$_SESSION['id'];
+$Review_Beer_ID=$_SESSION["beerID"];
+
 $review=$_POST['review'];
 $stars_Sugar=$_POST['stars_Sugar'];
 $stars_Sour=$_POST['stars_Sour'];
@@ -113,10 +115,9 @@ else{
     	default:
     		break;
 	}
-	#이전 review3.php에서 받아온 값 입력해야함.
-	$Review_Beer_ID=1;
+	
 	$Review_Hashtag1="10";
-	$sql="INSERT INTO beer_review (Review_ID, Review_Beer_ID, Review, Review_Hashtag1,Review_hashtag2,Review_Hashtag3,Taste_Sugar,Taste_Sour,Taste_Flavor,BeerScore) VALUES ('$Review_ID_new','$Review_Beer_ID','$review','$Review_Hashtag1','$Review_Hashtag1','$Review_Hashtag1','$stars_Sugar','$stars_Sour','$stars_Flavor','$stars_TotalScore')";
+	$sql="INSERT INTO beer_review (Review_ID, Review_Beer_ID, Review, Review_Hashtag1,Review_hashtag2,Review_Hashtag3,Taste_Sugar,Taste_Sour,Taste_Flavor,BeerScore,Reviewer_ID) VALUES ('$Review_ID_new','$Review_Beer_ID','$review','$Review_Hashtag1','$Review_Hashtag1','$Review_Hashtag1','$stars_Sugar','$stars_Sour','$stars_Flavor','$stars_TotalScore','$reviewer_ID')";
 	$query=mysqli_query($db,$sql);
 	$newreviewidquery = "SELECT Review_ID FROM beer_review ORDER BY Review_ID DESC LIMIT 1";
 	$newidresult=mysqli_fetch_array(mysqli_query($db,$newreviewidquery));

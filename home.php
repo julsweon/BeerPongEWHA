@@ -36,12 +36,12 @@
   <table class = "hometable">
   <tr>
     <th class = "title"> [추천맥주] </th>
-    <th class = "title"> [신상맥주] </th>
+    <th class = "title">  </th>
     <th class = "title"> [최신리뷰] </th>
   </tr>
   <tr>
-    <td class = "tableimg"> <img class = "beerimg" src = "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F258E23335978A89816"> </td>
-    <td class = "tableimg"> <img class = "beerimg" src = "https://file.mk.co.kr/meet/neds/2019/03/image_readtop_2019_149823_15524352613667037.jpg" </td>
+    <td class = "tableimg"> <img class = "beerimg" onclick="location.href='home_recom_1.php'" src = "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F258E23335978A89816"> </td>
+    <td class = "tableimg"> <img class = "beerimg" onclick="location.href='home_recom_2.php'" src = "https://file.mk.co.kr/meet/neds/2019/03/image_readtop_2019_149823_15524352613667037.jpg" </td>
     <td rowspan = "2">
      <table class="imgreview">
       <tr>
@@ -67,6 +67,10 @@
     <td class = "point"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"> 3.32 </td>
     <td></td>
   </tr>
+  <table>
+  
+  <th class="title"><br><br>ABOUT BEERPONG<br><br></th>
+  <tr class="infobox"></tr></table>
   </table>
     </div>
 
