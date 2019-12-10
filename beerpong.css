@@ -117,10 +117,10 @@ padding: 50px;
 }
 /*맥주사진*/
 .rank img .beer{
-height: 5%;
-width: 90px;
+height: 10;
+width: auto;
 overflow:hidden;
-
+padding : 10px;
 }
 .Ranknum{
     font-style: bold;

@@ -85,7 +85,7 @@ else {
 
 	//review 평점 계산
 	$ReviewTotalScore="SELECT AVG(BeerScore) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
-	$SelectedReviewTotalScore=mysqli_fetch_array(mysqli_query($db,$Beer_Flavor));
+	$SelectedReviewTotalScore=mysqli_fetch_array(mysqli_query($db,$ReviewTotalScore));
 
 
 ?>
@@ -130,7 +130,7 @@ else {
 
 <table class="beerreview">
 <tr> <td rowspan="7" width=10><p class="Ranknum"><?php echo "".$SelectedBeerRank[0]."" ?></p> </td> </tr>
-<tr> <td rowspan="7" width=10><img class ="beer" src="<?php echo"".$SelectedBeerImg[0].""?>" width="350" height="500"/></td></tr>
+<tr> <td rowspan="7" width=10><img class ="beer" src="<?php echo"".$SelectedBeerImg[0].""?>"/></td></tr>
 <tr><td><font size="20"><strong> <?php echo "".$SelectedBeerName[0]."" ?> </strong></font></td></tr>
 <?php 
 	$_SESSION["beername"]=$SelectedBeerName[0];
