@@ -84,7 +84,7 @@ else {
 	$SelectedFlavor=mysqli_fetch_array(mysqli_query($db,$Beer_Flavor));
 
 	//review 평점 계산
-	$ReviewTotalScore="SELECT AVG(BeerScore) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
+	$ReviewTotalScore="SELECT ROUND(AVG(BeerScore), 2) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
 	$SelectedReviewTotalScore=mysqli_fetch_array(mysqli_query($db,$ReviewTotalScore));
 
 
