@@ -1,11 +1,20 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+<style>
+.hero-image {
+  background-image: url("long.jpg");
+  height: 250px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+</style>
 <title>BeerPong | 세상의 모든 맥주</title>
 <link rel="stylesheet" href="beerpong.css" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 </head>
-
 <body>
 <?php
 	session_start();
@@ -25,17 +34,19 @@
 <?php
 }
 ?>
-<p align="center">
-<button id="main_title" onclick="location.href='home.php'">비  어  퐁</button>
-</p>
+<div class="hero-image" onclick="location.href='home.php'"></div>
     <button id="tab1" onclick="location.href='home.php'">HOME</button>
     <button class="tab" onclick="location.href='review.php'">REVIEW</button>
     <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>
 
     <div id="HOME" class="content">
+  <table>
+  
+  <th class="title"><br>WELCOME TO BEERPONG! :D<br></th>
+  <tr class="infobox"></tr></table>
   <table class = "hometable">
   <tr>
-    <th class = "title"> [추천맥주] </th>
+    <th class = "title"> </th>
     <th class = "title">  </th>
     <th class = "title"> [최신리뷰] </th>
   </tr>
@@ -67,10 +78,7 @@
     <td class = "point"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"> 3.32 </td>
     <td></td>
   </tr>
-  <table>
-  
-  <th class="title"><br><br>ABOUT BEERPONG<br><br></th>
-  <tr class="infobox"></tr></table>
+
   </table>
     </div>
 

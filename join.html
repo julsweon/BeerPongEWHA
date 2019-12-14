@@ -1,6 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+<style>
+.hero-image {
+  background-image: url("long.jpg");
+  height: 250px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+</style>
 <title>BeerPong | 세상의 모든 맥주</title>
 <link rel="stylesheet" href="beerpong.css" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
@@ -11,10 +21,7 @@
 <button class="do_login" onclick="location.href='login.html'">[로그인]</button> |
 <button class="do_login" onclick="location.href='join.html'">[회원가입]</button>
 </p>
-<p align="center">
-<button id="main_title" onclick="location.href='home.php'">비  어  퐁</button>
-</p>
-
+<div class="hero-image" onclick="location.href='home.php'"></div>
     <button class="tab"onclick="location.href='home.php'">HOME</button>
     <button class="tab" onclick="location.href='review.php'">REVIEW</button>
     <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>

@@ -1,5 +1,5 @@
 ﻿<?php
-$searchterm=$_POST["searchterm"];
+$searchterm=$_POST["beerButton"];
 $db = mysqli_connect('localhost','root','1234','beerpong');
 $findBeerID="SELECT EXISTS (SELECT Beer_ID FROM beers WHERE Beer_Name='$searchterm') AS SUCCESSS";
 $queryfindBeerID = mysqli_fetch_array(mysqli_query($db, $findBeerID));
@@ -134,6 +134,7 @@ else {
     <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>
 
 <p> &nbsp; &nbsp; &nbsp;</p>
+
 </div>
 
 <?php 
@@ -198,6 +199,7 @@ else {
 		?>
 	</td></tr>
 </table></td></tr></table>
+
 
 <?php
 }

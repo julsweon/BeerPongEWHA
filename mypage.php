@@ -1,6 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+<style>
+.hero-image {
+  background-image: url("long.jpg");
+  height: 250px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+</style>
 <title>BeerPong | 세상의 모든 맥주</title>
 <link rel="stylesheet" href="beerpong.css" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
@@ -25,9 +35,7 @@
 <?php
 }
 ?>
-<p align="center">
-<button id="main_title" onclick="location.href='home.php'">비  어  퐁</button>
-</p>
+<div class="hero-image" onclick="location.href='home.php'"></div>
     <button class="tab active" onclick="location.href='home.php'">HOME</button>
     <button class="tab" onclick="location.href='review.php'">REVIEW</button>
     <button id="tab1" onclick="location.href='mypage.php'">MYPAGE</button>
@@ -38,12 +46,26 @@ if(!isset($_SESSION['id'])){
 }
 ?>
 
+
+<?php
+$mysqli=mysqli_connect("localhost", "root","1234", "beerpong");
+if ( !$mysqli) die('DB Error');
+$id= $_SESSION['id'];
+$sql="SELECT * FROM Customers WHERE Customer_ID='$id'";
+$result=$mysqli->query($sql);
+$arr=mysqli_fetch_array($result);
+$name=$arr['Customer_Name'];
+$Taste_Sugar=$arr['Taste_Sugar'];
+$Taste_Sour=$arr['Taste_Sour'];
+$Taste_Flavor=$arr['Taste_Flavor'];
+?>
+
    <div id="MYPAGE" class="content">   
 <section class="myProfile">
     <h3> 나의 프로필 </h3>
     <table>
     <tr><td><image src = "https://cdn2.iconfinder.com/data/icons/user-people-4/48/6-512.png" width=100 height=100></td>
-    <td>이름: 
+    <td>이름: <?php echo $name; ?>
 
     <p>아이디: <?php	echo $_SESSION['id'].'';?></td></tr></table>
     <p align="right">
@@ -55,13 +77,29 @@ if(!isset($_SESSION['id'])){
     <tr> <td width=33.3%><article id="myPageMenu"><header><h3>맛 취향</h3></header>
 	<table id="preference">
              <tr><td>당도</td> 
-	<td><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25">
+	<td>
+<?php while($Taste_Sugar){
+?>
+<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25">
+
+<?php $Taste_Sugar--;}
+?>
 	</td></tr>
 	<tr><td>산미</td>
-	<td><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25">
+	<td><?php while($Taste_Sour){
+?>
+<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25">
+
+<?php $Taste_Sour--;}
+?>
 	</td></tr>
 	<tr><td>풍미 </td>
-	<td><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25">
+	<td><?php while($Taste_Flavor){
+?>
+<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="25">
+
+<?php $Taste_Flavor--;}
+?>
 	</td></tr>
 	</table>
     <table id="preference">

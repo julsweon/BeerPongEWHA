@@ -10,9 +10,9 @@ $pw=$_POST['my_password'];
 $pwc=$_POST['my_password2'];
 $name=$_POST['my_name'];
 $email=$_POST['my_mail'];
-$sugar=$_POST['stars1'];
-$sour=$_POST['stars2'];
-$flavor=$_POST['stars3'];
+$smell=$_POST['stars1'];
+$look=$_POST['stars2'];
+$taste=$_POST['stars3'];
 
 if($pw!=$pwc){
 	echo "<script> alert('비밀번호와 비밀번호 확인이 서로 다릅니다.');</script>";
@@ -35,7 +35,7 @@ if($num==1){
 	exit();
 }
 $password=md5($pw);
-$query="INSERT INTO Customers (Customer_ID, Customer_PW, Customer_Name, Customer_Email, Taste_Sugar, Taste_Sour	, Taste_Flavor) VALUES('".$id."', '".$password."', '".$name."', '".$email."', '".$sugar."', '".$sour."', '".$flavor."')";
+$query="INSERT INTO Customers (Customer_ID, Customer_PW, Customer_Name, Customer_Email, Taste_Smell, Taste_Look, Taste_Taste) VALUES('".$id."', '".$password."', '".$name."', '".$email."', '".$smell."', '".$look."', '".$taste."')";
 $signup=mysqli_query($mysqli, $query);
 if($signup){
 	echo "<script> alert('회원가입 완료');</script>";

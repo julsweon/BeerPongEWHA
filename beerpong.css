@@ -107,7 +107,7 @@ width:90%;
 margin: auto;
 }
 /*맥주이름*/
-button.ranking{
+.ranking{
 border: 0px;
 outline: none;
 font: 25px verdana, sans-serif;
@@ -269,7 +269,7 @@ margin-top: 100px;
 .reviewbox{
 width: 1180px;
 height: 30px;
-padding: 10px;
+padding: 12px;
 border: 0px;
 outline: none;
 float: left;
@@ -369,3 +369,21 @@ outline: none;
 float: left;
 font: 15px verdana, sans-serif;
 }
+
+.hashtagButton{
+text-align:center;
+width: 70px;
+height: 100%;
+border: 0px;
+padding: 10px;
+background: brown;
+outline: none;
+float: left;
+color: white;
+margin: 10px 10px;
+font: 15px verdana, sans-serif;
+}
+#hashtagSet{
+float: center;
+}
+
