@@ -1,6 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+<style>
+.hero-image {
+  background-image: url("long.jpg");
+  height: 250px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+</style>
 <title>BeerPong | 세상의 모든 맥주</title>
 <link rel="stylesheet" href="beerpong.css" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
@@ -15,6 +25,7 @@
 <?php	echo $_SESSION['id'].'님 안녕하세요';?>
 <button class="do_login" onclick="location.href='logout.php'">[로그아웃]</button>
 </p>
+
 <?php
 } else{
 ?>
@@ -25,9 +36,9 @@
 <?php
 }
 ?>
-<p align="center">
-<button id="main_title" onclick="location.href='home.php'">비  어  퐁</button>
-</p>
+
+
+<div class="hero-image" onclick="location.href='home.php'"></div>
 
     <button class="tab"onclick="location.href='home.php'">HOME</button>
     <button id="tab1" onclick="location.href='review.php'">REVIEW</button>
@@ -37,15 +48,23 @@
    <div id="REVIEW" class="content">
 <div id="search_engine">
 <div id="searh2">
-<input type="text" placeholder="맥주이름을 입력하세요" class="searchbox"></div>
-<button id="search"> 검색</button>
+<form action = "review2.php" method="post">
+<input type="text"  placeholder="맥주이름을 입력하세요" class="searchbox" name="searchterm" size="50"></div>
+<button id="search" type = "submit" name="submit"> 검색</button>
+</form>
 </div>
 
 <div id="hashtags">
-<button class="hashtag"> #향긋한 </button>
-<button class="hashtag"> #새콤한 </button>
-<button class="hashtag"> #과일향 </button>
-<button class="hashtag"> #깊은 </button>
+<?php
+$mysqli=mysqli_connect("localhost", "root","1234", "beerpong");
+$check="select * from Hashtag order by rand() limit 3";
+$randomHashtag=$mysqli->query($check);
+while($rowHashtag=mysqli_fetch_array($randomHashtag)){
+	echo '<form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value='; print($rowHashtag['Hashtag']); echo' size="20"> </form>';
+}
+?>
+
 </div>
 
 <p align="right">
@@ -55,37 +74,19 @@
 </p>
 
 <div class="rank">
-<table>
-<thead>
-          <tr>   </tr>
-</thead>
-      <tbody>
-<tr >
-<td width="15%"><p class="Ranknum">1</p></td>
-<td width="25%"><img class ="beer"  src="https://cdn11.bigcommerce.com/s-0294a/images/stencil/1280x1280/products/8029/12648/hoegaarden__80083.1563531641.jpg?c=2&imbypass=on" width="90" height="110"/></td>
-<td width="40%"><button class="ranking" onclick="location.href='review2.php'">호가든</button></td>
-<td width="10%"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"><p class="score"> 4.5</p></td>
-</tr>
-<tr>
-<td width="70"> <p class="Ranknum">2</p></td>
-<td width="120"><img class ="beer" src="https://products1.imgix.drizly.com/ci-heineken-lager-6ea7dedfaaced647.jpeg?auto=format%2Ccompress&fm=jpeg&q=20"width="90" height="110"/> </td>
-<td width="500"> <button class="ranking">하이네켄</button></td>
-<td width="100"> <img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"><p class="score"> 4.0</p></td>
-</tr>
-<tr >
-<td width="70"> <p class="Ranknum">3</p></td>
-<td width="120"><img class ="beer" src="https://products2.imgix.drizly.com/ci-tsingtao-42c4e4345d0ea5d3.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" width="80" height="110">  </td>
-<td width="500"><button class="ranking">칭따오</button> </td>
-<td width="100"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"><p class="score"> 3.8</p></td>
-</tr>
-<tr>
-<td width="70"> <p class="Ranknum">4</p></td>
-<td width="120"><img class ="beer" src="https://sc01.alicdn.com/kf/UTB8mKnnCqrFXKJk43Ovq6ybnpXaG/Budweiser-33cl-bottles.jpg_220x220.jpg"width="140" height="110"/>  </td>
-<td width="500"><button class="ranking">버드와이저</button> </td>
-<td width="100"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"><p class="score"> 3.5</p></td>
-</tr>
-      </tbody>
-    </table>
+<?php
+$query="SELECT * FROM Beers ORDER BY Beer_Rank";
+$result=$mysqli->query($query);
+while($row=mysqli_fetch_array($result)){
+	echo '<div class="rank"> <table> <tbody> <tr> ';
+	echo '<td width="15%"><p class="Ranknum">'; print($row['Beer_Rank']); echo '</p></td>';
+	echo '<td width="25%"><img class ="beer"  src="'; print($row['Beer_Image']);echo'" width="90" height="110"/></td>';
+	echo '<td width="500"><form action = "clicked_Beer.php" method="post">
+<input type="submit" class ="ranking" name="beerButton" value="'; print( $row['Beer_Name']); echo '"size="20" ></form></td>';
+	echo'<td width="10%"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"><p class="score">'; print($row['Beer_TotalScore']); echo'</p></td>';
+echo '</tr></table></div>';
+}
+?>
 
 </div>
     </div>

@@ -1,5 +1,5 @@
 ﻿<?php
-$searchterm=$_POST["searchterm"];
+$searchterm=$_POST["beerButton"];
 $db = mysqli_connect('localhost','root','1234','beerpong');
 $findBeerID="SELECT EXISTS (SELECT Beer_ID FROM beers WHERE Beer_Name='$searchterm') AS SUCCESSS";
 $queryfindBeerID = mysqli_fetch_array(mysqli_query($db, $findBeerID));
@@ -134,6 +134,7 @@ else {
     <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>
 
 <p> &nbsp; &nbsp; &nbsp;</p>
+
 </div>
 
 <?php 
@@ -150,11 +151,11 @@ else {
 <tr>
 	<td><form action = "clicked_hashtag.php" method="post">
 <input type="submit" class ="hashtagButton" name="hashtag" value=<?php echo $printBeerHashtag1[0] ?> size="20">
-</form>
-	<form action = "clicked_hashtag.php" method="post">
+</form></td>
+	<td><form action = "clicked_hashtag.php" method="post">
 <input type="submit" class ="hashtagButton" name="hashtag" value=<?php echo $printBeerHashtag2[0] ?> size="20" >
-</form>
-	<form action = "clicked_hashtag.php" method="post">
+</form></td>
+	<td><form action = "clicked_hashtag.php" method="post">
 <input type="submit" class ="hashtagButton" name="hashtag" value=<?php echo $printBeerHashtag3[0] ?> size="20">
 </form></td> </tr> </table>
 	</td>
@@ -198,6 +199,7 @@ else {
 		?>
 	</td></tr>
 </table></td></tr></table>
+
 
 <?php
 }
