@@ -1,11 +1,22 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+<style>
+.hero-image {
+  background-image: url("long.jpg");
+  height: 250px;
+ width: 99.9%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+</style>
 <title>BeerPong | 세상의 모든 맥주</title>
 <link rel="stylesheet" href="beerpong.css" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 </head>
-
 <body>
 <?php
 	session_start();
@@ -25,54 +36,75 @@
 <?php
 }
 ?>
-<p align="center">
-<button id="main_title" onclick="location.href='home.php'">비  어  퐁</button>
-</p>
+<div class="hero-image" onclick="location.href='home.php'"></div>
     <button id="tab1" onclick="location.href='home.php'">HOME</button>
     <button class="tab" onclick="location.href='review.php'">REVIEW</button>
     <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>
 
     <div id="HOME" class="content">
-  <table class = "hometable">
-  <tr>
-    <th class = "title"> [추천맥주] </th>
-    <th class = "title">  </th>
-    <th class = "title"> [최신리뷰] </th>
-  </tr>
-  <tr>
-    <td class = "tableimg"> <img class = "beerimg" onclick="location.href='home_recom_1.php'" src = "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F258E23335978A89816"> </td>
-    <td class = "tableimg"> <img class = "beerimg" onclick="location.href='home_recom_2.php'" src = "https://file.mk.co.kr/meet/neds/2019/03/image_readtop_2019_149823_15524352613667037.jpg" </td>
-    <td rowspan = "2">
-     <table class="imgreview">
-      <tr>
-       <td class="logo"> <img class="logoimg" src = "https://www.cass.co.kr/images/etc/img_logo_1.jpg"></td>
-       <td class="review"> -부드럽고 상큼해요!</td>
-      </tr>
-      <tr>
-        <td class="logo"> <img class="logoimg" src = "https://www.somersby.com/inc/201907241014/image/general/somersby-logo-rgb.png"> </td>
-        <td class="review"> -과일향이 강해요.</td>
-      </tr>
-      <tr>
-        <td class="logo"> <img class="logoimg" src = "http://napervilletri.events/wp-content/uploads/2017/01/Guinness-Logo.png"></td>
-        <td class="review"> -맛이 깔끔합니다.</td>
-      </tr>
-      <tr>
-        <td class="logo"> <img class="logoimg" src = "https://cdn.freebiesupply.com/logos/large/2x/heineken-1-logo-png-transparent.png"> </td>
-        <td class="review"> -탄산이 약하고, 고소한 향이 나요.</td>
-      </tr>
+
+<table>
+<th class="title"><br>WELCOME TO BEERPONG! :D<br> 
+<p style="font-size:15px"><비어퐁에서 오늘의 추천 맥주를 즐겨보세요!><br></p></th>
+</table>
+
+<table class = "hometable">
+<?php 
+$mysqli=mysqli_connect("localhost", "root", "1234", "beerpong");
+$check="select Beer_ID, Beer_Image, Beer_Name from beers order by rand() limit 2";
+$result=$mysqli-> query($check);   //해당 행 가져옴
+while($row=mysqli_fetch_array($result)){
+echo'<td width="300"><p align="center">';
+echo '<form action="review2.php" align="center" name=form method="post">
+	<input type=hidden name="searchterm" value="'; print($row['Beer_Name']); echo'">
+	<input type="image" src="'; print($row['Beer_Image']); echo'" width=auto height=300>    
+</form><br>';
+?>
+
+<?php
+echo '
+<form align="center" action = "clicked_Beer.php" method="post">
+<input type="submit" class ="beername" name="beerButton" value="'; print( $row['Beer_Name']); echo '"size="20" ></form>';
+echo '<p align="center"style="font-size:24px"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align=top width=40 height=40>';
+{	
+	$check2="SELECT ROUND(AVG(BeerScore), 2) FROM Beer_Review where Review_Beer_ID=$row[Beer_ID]";
+	$result2=$mysqli->query($check2);
+	while($row=mysqli_fetch_array($result2)){
+	print($row[0]);
+	echo'</p>';
+		}
+	}
+echo'</p></td>';
+}
+?>
+<td width="650"><table class="imgreview">
+<tr>
+<p align="center" style="font-size:24px"><b> [추천 리뷰]</b></p>
+<?php 
+$mysqli=mysqli_connect("localhost", "root", "1234", "beerpong");
+$check="SELECT Review, Review_Beer_ID from beer_review order by rand() limit 5";
+$result=$mysqli-> query($check);   //해당 고객 행가져옴
+while($row=mysqli_fetch_array($result)){
+echo '<tr><td class="review"> - ';
+print( $row['Review']);
+	{
+	$check2="SELECT Beer_Name from beers where Beer_ID=($row[Review_Beer_ID])";
+	$result2=$mysqli->query($check2);
+	while($row=mysqli_fetch_array($result2))
+		{
+echo '
+<form align="right" action = "clicked_Beer.php" method="post">
+<input type="submit" class ="beername" name="beerButton" value="'; print( $row['Beer_Name']); echo '"size="20" ></form>';
+		}
+	}
+echo'</form></td></tr>';
+}
+echo'</table>';
+ ?>
+</tr>
      </table></td>
   </tr>
-  <tr>
-    <td class = "point"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"> 4.68 </td>
-    <td class = "point"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"> 3.32 </td>
-    <td></td>
-  </tr>
-  <table>
-  
-  <th class="title"><br><br>ABOUT BEERPONG<br><br></th>
-  <tr class="infobox"></tr></table>
   </table>
     </div>
-
 </body>
 </html>
