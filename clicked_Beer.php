@@ -2,7 +2,8 @@
 $searchterm=$_POST["beerButton"];
 $db = mysqli_connect('localhost','root','1234','beerpong');
 $findBeerID="SELECT EXISTS (SELECT Beer_ID FROM beers WHERE Beer_Name='$searchterm') AS SUCCESSS";
-$queryfindBeerID = mysqli_fetch_array(mysqli_query($db, $findBeerID));
+$resultFind=$db->query($findBeerID);
+$queryfindBeerID = mysqli_fetch_array($resultFind);
 if(!$searchterm) {
 	echo "<script>alert('맥주 이름을 입력하세요.');</script>";
 	echo "<script>location.href = 'review.php' </script>";
@@ -83,10 +84,21 @@ else {
 	$Beer_Flavor="SELECT Taste_Flavor FROM Beer_Score WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedFlavor=mysqli_fetch_array(mysqli_query($db,$Beer_Flavor));
 
+	//review_Sugar 계산
+	$ReviewSugarScore="SELECT ROUND(AVG(Taste_Sugar), 2) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
+	$SelectedReviewSugarScore=mysqli_fetch_array(mysqli_query($db, $ReviewSugarScore));
+
+	//review_Sour 계산
+	$ReviewSourScore="SELECT ROUND(AVG(Taste_Sour), 2) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
+	$SelectedReviewSourScore=mysqli_fetch_array(mysqli_query($db, $ReviewSourScore));
+
+	//review_Flavor 계산
+	$ReviewFlavorScore="SELECT ROUND(AVG(Taste_Flavor), 2) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
+	$SelectedReviewFlavorScore=mysqli_fetch_array(mysqli_query($db, $ReviewFlavorScore));
+	
 	//review 평점 계산
 	$ReviewTotalScore="SELECT ROUND(AVG(BeerScore), 2) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
 	$SelectedReviewTotalScore=mysqli_fetch_array(mysqli_query($db,$ReviewTotalScore));
-
 
 ?>
 
@@ -143,30 +155,31 @@ else {
 ?>
 
 <table class="beerreview">
-	<tr><td rowspan="6" width=10 style="padding : 10px; margin : 10px;"><p class="Ranknum"><?php echo "".$SelectedBeerRank[0]."" ?></p></td><td rowspan="6" width=40%  style="padding : 10px; margin : 10px;" ><img class ="beer" src="<?php echo"".$SelectedBeerImg[0].""?>"/></td><td><font size="20"><strong> <?php echo "".$SelectedBeerName[0]."" ?> </strong></font></td></tr>
+	<tr><td rowspan="6" width=10 style="padding : 10px; margin : 10px;"><p class="Ranknum"><?php echo "".$SelectedBeerRank[0]."" ?></p></td><td rowspan="6" width=40%  style="padding : 10px; margin : 10px;" ><img class ="beer" style="max-height:500px; max-width:300px; width: auto;" src="<?php echo"".$SelectedBeerImg[0].""?>"/></td><td><font size="20"><strong> <?php echo "".$SelectedBeerName[0]."" ?> </strong></font></td></tr>
 	<tr><td style="padding : 10px"><p style="font-size:25px"></p>
 	<p> <?php echo'('; echo "".$SelectedBeerOrigin[0].""; echo ')';?> </p> </td></tr>
 	<tr><td><p align = "left"><?php echo "".$SelectedBeerInfo[0]."" ?></p></td></tr>
 	<tr><td><table class = "review2hashtag">
 <tr>
 	<td><form action = "clicked_hashtag.php" method="post">
-<input type="submit" class ="hashtagButton" name="hashtag" value=<?php echo $printBeerHashtag1[0] ?> size="20">
+<input type="submit" class ="hashtagButton" style="margin-left:80px" name="hashtag" value=<?php echo $printBeerHashtag1[0] ?> size="20">
 </form></td>
 	<td><form action = "clicked_hashtag.php" method="post">
-<input type="submit" class ="hashtagButton" name="hashtag" value=<?php echo $printBeerHashtag2[0] ?> size="20" >
+<input type="submit" class ="hashtagButton" style="margin-right:50px; margin-left:50px" name="hashtag" value=<?php echo $printBeerHashtag2[0] ?> size="20" >
 </form></td>
 	<td><form action = "clicked_hashtag.php" method="post">
-<input type="submit" class ="hashtagButton" name="hashtag" value=<?php echo $printBeerHashtag3[0] ?> size="20">
+<input type="submit" class ="hashtagButton" style="margin-right:80px" name="hashtag" value=<?php echo $printBeerHashtag3[0] ?> size="20">
 </form></td> </tr> </table>
 	</td>
 </tr>
 <tr><td><table id="preference">
-   <tr><td>당도</td> 
+<tr><td colspan=3>:: 전문가 별점 ::</td></tr>
+   <tr><td width="50%">당도</td> 
 	<td>
 		<?php
 		$i = 0;
 		for($i=0; $i< $SelectedSugar[0]; $i++) { ?>
-			<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="30">
 		<?php }
 		?>
 	</td></tr>
@@ -175,7 +188,7 @@ else {
 	<td><?php
 		$i = 0;
 		for($i=0; $i< $SelectedSour[0]; $i++) { ?>
-			<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="30">
 		<?php }
 		?>
 	</td></tr>
@@ -184,16 +197,16 @@ else {
 	<td><?php
 		$i = 0;
 		for($i=0; $i< $SelectedFlavor[0]; $i++) { ?>
-			<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="30">
 		<?php }
 		?>
 	</td></tr>
 	
-	<tr><td>전문가 평점</td>
+	<tr><td>총점</td>
 	<td> <?php
 		$i = 0;
 		for($i=0; $i<$SelectedBeerTotalScore[0]; $i++) { ?>
-			<img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" width="30" height="30">
 		<?php 
 		}
 		?>
@@ -205,7 +218,14 @@ else {
 }
 ?>
 
-<p class="beerreview"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png"><?php echo $SelectedReviewTotalScore[0]?> (<?php echo $Selectedpeople[0] ?> 명 참여) </p>
+<p class="beerreview">
+:: 사용자 별점 ::<br><br>
+총점 : <?php echo $SelectedReviewTotalScore[0]?> 
+ | 당도 : <?php echo $SelectedReviewSugarScore[0]?>
+ | 산미 : <?php echo $SelectedReviewSourScore[0]?>
+ | 풍미 : <?php echo $SelectedReviewFlavorScore[0]?></p>
+<p align="center" style="font-size:18px">
+ (<?php echo $Selectedpeople[0] ?> 명 참여)</p>
 <p align="center"><button id="writereview" onclick="location.href='review3.php'">REVIEW 작성하기</button></p>
 
 <p> &nbsp; &nbsp; &nbsp;</p>

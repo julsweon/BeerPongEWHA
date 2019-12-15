@@ -24,7 +24,11 @@ if($id==NULL|| $pw==NULL|| $name==NULL|| $email==NULL|| $smell==NULL|| $look==NU
 	echo "<script> location.href='join.html' </script>";
 	exit();
 }
-
+elseif(strlen($pw)<4||strlen($pw)>10){
+	echo "<script> alert('비밀번호를 4자이상 10자이하로 입력해주세요.');</script>";
+	echo "<script> location.href='join.html' </script>";
+	exit();
+}
 $mysqli=mysqli_connect("localhost", "root","1234", "beerpong");
 $check ="SELECT * FROM Customers WHERE Customer_ID='$id'";
 $result=$mysqli->query($check);

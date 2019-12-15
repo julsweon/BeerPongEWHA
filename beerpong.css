@@ -115,6 +115,12 @@ margin: 30 auto;
 background: #ffffff;
 padding: 50px;
 }
+.beername{
+border: 0px;
+outline: none;
+font: 20px verdana, sans-serif;
+background: #ffffff;
+}
 /*맥주사진*/
 .rank img .beer{
 height: 10;
@@ -246,7 +252,7 @@ margin-top: 100px;
 }
 
 .logo {
-    width: 50px;
+    width: auto;
     height: 48px;
     border-bottom: 0.5px solid gray;
 }
@@ -255,7 +261,16 @@ margin-top: 100px;
     width : auto;
     height : 50px;
     text-align: center;
-    padding : 10px;
+    padding : 0px;
+}
+
+.myreview {
+    width : auto;
+    text-align : left;
+    font-style : bold;
+    font: sans-serif;
+    border-bottom: 0.5px solid gray; 
+    padding : 0px;
 }
 
 .review {
@@ -371,19 +386,40 @@ font: 15px verdana, sans-serif;
 }
 
 .hashtagButton{
+border: 2px solid brown;
 text-align:center;
-width: 70px;
+width: 80px;
 height: 100%;
-border: 0px;
-padding: 10px;
-background: brown;
+padding: 10px 10px;
+background : white;
 outline: none;
 float: left;
-color: white;
+color: black;
+border-radius: 12px;
 margin: 10px 10px;
-font: 15px verdana, sans-serif;
+font: 13px verdana, sans-serif;
 }
+.sortButton{
+border: 1px solid brown;
+text-align:center;
+width: 80px;
+height: 100%;
+padding: 5px 5px;
+background: rgba(0,0,0,0);
+outline: none;
+float: left;
+color: black;
+border-radius: 8px;
+margin: 5px 5px;
+font: 10px verdana, sans-serif;
+}
+
 #hashtagSet{
 float: center;
 }
 
+.reviewBeer{
+outline: none;
+border: 0px;
+background: #f9f2ec;
+}

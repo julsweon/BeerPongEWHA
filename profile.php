@@ -53,19 +53,23 @@ $sql="SELECT * FROM Customers WHERE Customer_ID='$id'";
 $result=$mysqli->query($sql);
 $arr=mysqli_fetch_array($result);
 $name=$arr['Customer_Name'];
-$email=$arr['Customer_ID'];
+$email=$arr['Customer_Email'];
 
 ?>
 <p id="login">이름 : <?php echo $name ?> </p>
 <p id="login">아이디 :<?php echo $id ?></p>
 <p id="login">이메일 : <?php echo $email ?> </p>
 <form method="post" action = "modify.php"> 
-<p id="login">비밀번호 변경하기</p>
+<p id="login">새 비밀번호(4자이상 10자이하)</p>
 <div id="login_engine">
 <div>
 <input type="password" name="my_password" class="loginbox"></div>
 </div>
-
+<p id="login">새 비밀번호 확인(4자이상 10자이하)</p>
+<div id="login_engine">
+<div>
+<input type="password" name="my_password2" class="loginbox"></div>
+</div>
 <p id="login">< 나의 맛 취향 ><br><br>
 당도
 <select name="stars_Sugar">

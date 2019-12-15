@@ -56,16 +56,21 @@ $mysqli=mysqli_connect("localhost", "root","1234", "beerpong");
 <div id="search_engine">
 <div id="searh2">
 <form action = "review2.php" method="post">
-<input type="text" value=<?php echo $hashtag ?> class="searchbox" name="searchterm" size="50"></div>
+<input type="text" value=<?php echo "#".$hashtag ?> class="searchbox" name="searchterm" size="50"></div>
 <button id="search" type = "submit" name="submit"> 검색</button>
 </form>
 </div>
 
 <div id="hashtags">
-<button class="hashtag"> #향긋한 </button>
-<button class="hashtag"> #새콤한 </button>
-<button class="hashtag"> #과일향 </button>
-<button class="hashtag"> #깊은 </button>
+<?php
+$mysqli=mysqli_connect("localhost", "root","1234", "beerpong");
+$check="select * from Hashtag order by rand() limit 3";
+$randomHashtag=$mysqli->query($check);
+while($rowHashtag=mysqli_fetch_array($randomHashtag)){
+	echo '<form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value='; print($rowHashtag['Hashtag']); echo' size="20"> </form>';
+}
+?>
 </div>
 
 <p align="right">
@@ -85,7 +90,7 @@ $result1=$mysqli->query($query1);
 while($row1=mysqli_fetch_array($result1)){
   echo '<div class="rank"> <table> <tbody> <tr> ';
   echo '<td width="15%"><p class="Ranknum">'; print($row1['Beer_Rank']); echo '</p></td>';
-  echo '<td width="25%"><img class ="beer"  src="';print($row1['Beer_Image']); echo '"width="90" height="110"/></td>';
+  echo '<td width="25%"><img class ="beer"  src="';print($row1['Beer_Image']); echo '"width="auto" height="110"/></td>';
   echo '<td width="500"><form action = "clicked_Beer.php" method="post">
 <input type="submit" class ="ranking" name="beerButton" value="'; print( $row1['Beer_Name']); echo '"size="20" ></form></td>';
   echo'<td width="10%"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"><p class="score">'; print($row1['Beer_TotalScore']); echo'</p></td>';
@@ -97,7 +102,7 @@ $result2=$mysqli->query($query2);
 while($row2=mysqli_fetch_array($result2)){
   echo '<div class="rank"> <table> <tbody> <tr> ';
   echo '<td width="15%"><p class="Ranknum">'; print($row2['Beer_Rank']); echo '</p></td>';
-  echo '<td width="25%"><img class ="beer"  src="';print($row2['Beer_Image']); echo '"width="90" height="110"/></td>';
+  echo '<td width="25%"><img class ="beer"  src="';print($row2['Beer_Image']); echo '"width="auto" height="110"/></td>';
   echo '<td width="500"><form action = "clicked_Beer.php" method="post">
 <input type="submit" class ="ranking" name="beerButton" value="'; print( $row2['Beer_Name']); echo '"size="20" ></form></td>';
   echo'<td width="10%"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"><p class="score">'; print($row2['Beer_TotalScore']); echo'</p></td>';
@@ -111,7 +116,7 @@ $result3=$mysqli->query($query3);
 while($row3=mysqli_fetch_array($result3)){
   echo '<div class="rank"> <table> <tbody> <tr> ';
   echo '<td width="15%"><p class="Ranknum">'; print($row3['Beer_Rank']); echo '</p></td>';
-  echo '<td width="25%"><img class ="beer"  src="';print($row3['Beer_Image']); echo '"width="90" height="110"/></td>';
+  echo '<td width="25%"><img class ="beer"  src="';print($row3['Beer_Image']); echo '"width="auto" height="110"/></td>';
   echo '<td width="500"><form action = "clicked_Beer.php" method="post">
 <input type="submit" class ="ranking" name="beerButton" value="'; print( $row3['Beer_Name']); echo '"size="20" ></form></td>';
   echo'<td width="10%"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"><p class="score">'; print($row3['Beer_TotalScore']); echo'</p></td>';

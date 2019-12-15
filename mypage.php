@@ -58,6 +58,61 @@ $name=$arr['Customer_Name'];
 $Taste_Sugar=$arr['Taste_Sugar'];
 $Taste_Sour=$arr['Taste_Sour'];
 $Taste_Flavor=$arr['Taste_Flavor'];
+
+$query_Sugar="SELECT * FROM Beer_Score WHERE Taste_Sugar='$Taste_Sugar' Order by rand() limit 1";
+$query_Sour="SELECT * FROM Beer_Score WHERE Taste_Sour='$Taste_Sour' Order by rand() limit 1";
+$query_Flavor="SELECT * FROM Beer_Score WHERE Taste_Flavor='$Taste_Flavor' Order by rand() limit 1";
+$result_Sugar=$mysqli->query($query_Sugar);
+$result_Sour=$mysqli->query($query_Sour);
+$result_Flavor=$mysqli->query($query_Flavor);
+$row_Sugar=mysqli_fetch_array($result_Sugar);
+$row_Sour=mysqli_fetch_array($result_Sour);
+$row_Flavor=mysqli_fetch_array($result_Flavor);
+
+$query_BeerSugar="SELECT * FROM Beers WHERE Beer_ID='$row_Sugar[Beer_ID]'";
+$query_BeerSour="SELECT * FROM Beers WHERE Beer_ID='$row_Sour[Beer_ID]'";
+$query_BeerFlavor="SELECT * FROM Beers WHERE  Beer_ID='$row_Flavor[Beer_ID]'";
+$rec_Sugar=$mysqli->query($query_BeerSugar);
+$rec_Sour=$mysqli->query($query_BeerSour);
+$rec_Flavor=$mysqli->query($query_BeerFlavor);
+$rec_BeerSugar=mysqli_fetch_array($rec_Sugar);
+$rec_BeerSour=mysqli_fetch_array($rec_Sour);
+$rec_BeerFlavor=mysqli_fetch_array($rec_Flavor);
+
+$query_HashtagSugar1="SELECT * FROM Hashtag WHERE Hashtag_ID='$rec_BeerSugar[Beer_Hashtag1]'";
+$query_HashtagSugar2="SELECT * FROM Hashtag WHERE Hashtag_ID='$rec_BeerSugar[Beer_Hashtag2]'";
+$query_HashtagSugar3="SELECT * FROM Hashtag WHERE Hashtag_ID='$rec_BeerSugar[Beer_Hashtag3]'";
+$Hash_Sugar1=$mysqli->query($query_HashtagSugar1);
+$Hash_Sugar2=$mysqli->query($query_HashtagSugar2);
+$Hash_Sugar3=$mysqli->query($query_HashtagSugar3);
+$rec_BeerHashSugar1=mysqli_fetch_array($Hash_Sugar1);
+$rec_BeerHashSugar2=mysqli_fetch_array($Hash_Sugar2);
+$rec_BeerHashSugar3=mysqli_fetch_array($Hash_Sugar3);
+
+
+$query_HashtagSour1="SELECT * FROM Hashtag WHERE Hashtag_ID='$rec_BeerSour[Beer_Hashtag1]'";
+$query_HashtagSour2="SELECT * FROM Hashtag WHERE Hashtag_ID='$rec_BeerSour[Beer_Hashtag2]'";
+$query_HashtagSour3="SELECT * FROM Hashtag WHERE Hashtag_ID='$rec_BeerSour[Beer_Hashtag3]'";
+$Hash_Sour1=$mysqli->query($query_HashtagSour1);
+$Hash_Sour2=$mysqli->query($query_HashtagSour2);
+$Hash_Sour3=$mysqli->query($query_HashtagSour3);
+$rec_BeerHashSour1=mysqli_fetch_array($Hash_Sour1);
+$rec_BeerHashSour2=mysqli_fetch_array($Hash_Sour2);
+$rec_BeerHashSour3=mysqli_fetch_array($Hash_Sour3);
+
+
+$query_HashtagFlavor1="SELECT * FROM Hashtag WHERE Hashtag_ID='$rec_BeerFlavor[Beer_Hashtag1]'";
+$query_HashtagFlavor2="SELECT * FROM Hashtag WHERE Hashtag_ID='$rec_BeerFlavor[Beer_Hashtag2]'";
+$query_HashtagFlavor3="SELECT * FROM Hashtag WHERE Hashtag_ID='$rec_BeerFlavor[Beer_Hashtag3]'";
+$Hash_Flavor1=$mysqli->query($query_HashtagFlavor1);
+$Hash_Flavor2=$mysqli->query($query_HashtagFlavor2);
+$Hash_Flavor3=$mysqli->query($query_HashtagFlavor3);
+$rec_BeerHashFlavor1=mysqli_fetch_array($Hash_Flavor1);
+$rec_BeerHashFlavor2=mysqli_fetch_array($Hash_Flavor2);
+$rec_BeerHashFlavor3=mysqli_fetch_array($Hash_Flavor3);
+
+
+
 ?>
 
    <div id="MYPAGE" class="content">   
@@ -73,8 +128,9 @@ $Taste_Flavor=$arr['Taste_Flavor'];
     </p>
     </section>
     <section class="myMenu">
+
     <table>
-    <tr> <td width=33.3%><article id="myPageMenu"><header><h3>맛 취향</h3></header>
+    <tr> <td width=28%><article id="myPageMenu"><header><h3>맛 취향</h3></header>
 	<table id="preference">
              <tr><td>당도</td> 
 	<td>
@@ -102,30 +158,75 @@ $Taste_Flavor=$arr['Taste_Flavor'];
 ?>
 	</td></tr>
 	</table>
-    <table id="preference">
-	<tr><td>#향긋한 #달달한 #홉향</td></tr>
-	<tr><td>#진한 #국산 #과일향</td></tr>
-	</table></article></td>
-    <td width=33.3%><article id="myPageMenu"><header><h3>추천 맥주</h3></header>
-     <table id="preference">
-	<tr><td><img class="logoimg" src = "https://www.cass.co.kr/images/etc/img_logo_1.jpg"></td>
-	<td>#가벼운 #상쾌한 #국산</td></tr>
-	<tr><td><img class="logoimg" src = "https://www.somersby.com/inc/201907241014/image/general/somersby-logo-rgb.png"> </td>
-	<td>#달달한 #과일향 #탄산강한</td></tr>
-	<tr><td><img class="logoimg" src = "http://napervilletri.events/wp-content/uploads/2017/01/Guinness-Logo.png"></td>
-	<td>#진한 #쌉싸름한 #깔끔한</td></tr></article></td>
-	<tr><td><img class="logoimg" src="https://mpng.pngfly.com/20180814/pho/kisspng-san-miguel-beer-logo-cervezas-san-miguel-brand-esi-media-partners-with-san-miguel-on-their-rich-l-5b72afd19e2d74.0369289615342427696479.jpg"></td>
-	<td>#과일향 #깔끔한 #고소한</td></tr></table>
-    <td width=33.3%> <article id="myPageMenu"><header><h3>내가 남긴 리뷰</h3></header>
+    </article></td>
+    <td width=44%><article id="myPageMenu"><header><h3>추천 맥주</h3></header>
+     <table id="preference"  width="70px">
+	<?php
+
+/*Sugar 추천 맥주*/
+		echo '<tr><td><form action="review2.php" name=form method="post">
+	<input type=hidden name="searchterm" value="'; print($rec_BeerSugar['Beer_Name']); echo'">
+	<input type="image"  class="logoimg" src="'; print($rec_BeerSugar['Beer_Image']); echo'">    
+</form></td>';
+
+	echo '<td><form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSugar1['Hashtag']); echo '"size="20"></form>
+	<form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSugar2['Hashtag']); echo '"size="20"></form>
+	<form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSugar3['Hashtag']); echo '"size="20"></form></td></tr>';
+
+/*Sour 추천 맥주*/
+	echo '<tr><td><form action="review2.php" name=form method="post">
+	<input type=hidden name="searchterm" value="'; print($rec_BeerSour['Beer_Name']); echo'">
+	<input type="image"  class="logoimg" src="'; print($rec_BeerSour['Beer_Image']); echo'">    
+</form></td>';
+	echo '<td> <form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSour1['Hashtag']); echo '"size="20"></form>
+	<form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSour2['Hashtag']); echo '"size="20"></form>
+	<form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSour3['Hashtag']); echo '"size="20"></form></td></tr>';
+
+/*Flavor 추천 맥주*/
+	echo '<tr><td><form action="review2.php" name=form method="post">
+	<input type=hidden name="searchterm" value="'; print($rec_BeerFlavor['Beer_Name']); echo'">
+	<input type="image"  class="logoimg" src="'; print($rec_BeerFlavor['Beer_Image']); echo'">    
+</form></td>';
+
+	echo '<td> <form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashFlavor1['Hashtag']); echo '"size="20"></form>
+	<form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashFlavor2['Hashtag']); echo '"size="20"></form>
+	<form action = "clicked_hashtag.php" method="post">
+<input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashFlavor3['Hashtag']); echo '"size="20"></form></td></tr>';
+
+	?>
+
+	</table>
+
+    <td width=28%> <article id="myPageMenu"><header><h3>내가 남긴 리뷰</h3></header>
 	<table id="preference">
-	  <tr><td class="logo"><img class="logoimg" src="https://www.somersby.com/inc/201907241014/image/general/somersby-logo-rgb.png"> </td>
-	  <td class="review"> -과일향이 강하고 달달해요. </td></tr>
-	  <tr><td class="logo"><img class="logoimg" src = "http://napervilletri.events/wp-content/uploads/2017/01/Guinness-Logo.png"></td>
-	  <td class="review"> -맛이 깔끔합니다.</td></tr>
-	  <tr><td class="logo"><img class="logoimg" src = "https://cdn.freebiesupply.com/logos/large/2x/heineken-1-logo-png-transparent.png"> </td>
-	  <td class="review"> -탄산이 약하고, 고소한 향이 나요.</td></tr>
-	  <tr><td class="logo"><img class="logoimg" src="https://seeklogo.com/images/T/tiger_beer-logo-AF9E616889-seeklogo.com.png"></td>
- 	  <td class="review">-가볍고 청량감이 있어요. </td></tr></table>
+
+	<?php
+	$review_query="SELECT * FROM beer_review WHERE Reviewer_ID='$id'";
+	$result_review=$mysqli->query($review_query);
+
+	while($row_review=mysqli_fetch_array($result_review)){
+		$review_beer_query="SELECT * FROM beers WHERE Beer_ID='$row_review[Review_Beer_ID]'";
+		$result_review_beer=$mysqli->query($review_beer_query);
+		$row_review_beer=mysqli_fetch_array($result_review_beer);
+		
+	echo '<tr><td><form action="review2.php" name=form method="post">
+	<input type=hidden name="searchterm" value="'; print($row_review_beer['Beer_Name']); echo'">
+	<input type="image"  class="logoimg" src="'; print($row_review_beer['Beer_Image']); echo'">    
+</form></td>
+	  <td class="myreview"> -'; print($row_review['Review']); echo' </td></tr>';
+	}
+
+	?>
+
+	  </table>
 
 
 </article></td></tr></table>
