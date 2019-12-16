@@ -42,7 +42,7 @@ if($num==1){
 	exit();
 }
 $password=md5($pw);
-$query="INSERT INTO Customers (Customer_ID, Customer_PW, Customer_Name, Customer_Email, Taste_Smell, Taste_Look, Taste_Taste) VALUES('".$id."', '".$password."', '".$name."', '".$email."', '".$smell."', '".$look."', '".$taste."')";
+$query="INSERT INTO Customers (Customer_ID, Customer_PW, Customer_Name, Customer_Email, Taste_Sugar, Taste_Sour, Taste_Flavor) VALUES('".$id."', '".$password."', '".$name."', '".$email."', '".$smell."', '".$look."', '".$taste."')";
 $signup=mysqli_query($mysqli, $query);
 if($signup){
 	echo "<script> alert('회원가입 완료');</script>";

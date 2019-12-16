@@ -97,8 +97,9 @@ if(isset($_POST['sort'])) {
   $selected_val = $_POST['stars'];
 }
 
+//SELECT AVG()
 if($selected_val=='0') {
-	$query="SELECT * FROM Beers ORDER BY Beer_TotalScore DESC";
+	$query="SELECT a.*, b.avg FROM beers a,  (SELECT Review_Beer_ID, ROUND(AVG(BeerScore),2) as avg FROM Beer_review GROUP BY Review_Beer_Id ORDER BY Review_beer_id) b WHERE a.beer_id=b.review_beer_id ORDER BY avg DESC";
 }
 
 elseif($selected_val=='1') {
@@ -118,13 +119,30 @@ if(isset($_POST['filter'])) {
 
 $i=1;
 $result=$mysqli->query($query);
+?>
+
+<div class="rank">
+<table>
+	<tr>
+		<td width="15%" style="font-size:30px">랭킹 </td>
+		<td width="65%" style="font-size:30px">맥주 이름</td>
+		<td width="10%" style="font-size:30px">리뷰 개수</td>
+		<td width="10%" style="font-size:30px">별점 </td>
+	</tr>
+</table>
+</div>
+
+<?php
 while($row=mysqli_fetch_array($result)){
-	echo '<div class="rank"> <table> <tbody> <tr> ';
+	$numreview="SELECT COUNT(Review_ID) FROM Beer_Review WHERE Review_Beer_ID=$row[Beer_ID]";
+	$sqlno_review=mysqli_fetch_row(mysqli_query($mysqli,$numreview));
+	echo '<div class="rank"> <table> <tbody> <tr>';
 	echo '<td width="15%"><p class="Ranknum">'; print($i); echo '</p></td>';
-	echo '<td width="25%"><img class ="beer"  src="'; print($row['Beer_Image']);echo'" width="auto" height="110"/></td>';
+	echo '<td width="25%"><img class ="beer" src="'; print($row['Beer_Image']);echo'" width="auto" height="110"/></td>';
 	echo '<td width="500"><form action = "clicked_Beer.php" method="post">';
-	$i++; echo '
-	<input type="submit" class ="ranking" name="beerButton" value="'; print( $row['Beer_Name']); echo '"size="20" ></form></td>';
+	$i++; 
+	echo '<input type="submit" class ="ranking" name="beerButton" value="'; print( $row['Beer_Name']); echo '"size="20" ></form></td>';
+	echo '<td width="10%" style="font-size:20px"> (';echo $sqlno_review[0]; echo ') </td>';
 	echo'<td width="10%"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align="top"><p class="score">'; 
 	{
 	$BeerIDSQL="SELECT Beer_ID FROM Beers WHERE Beer_NAME='$row[Beer_Name]'";

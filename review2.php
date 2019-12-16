@@ -144,6 +144,7 @@ else {
 <?php 
 	$_SESSION["beername"]=$SelectedBeerName[0];
 	$_SESSION["beerID"]=$SelectedBeerID;
+	$sel_val='0';
 ?>
 
 <table class="beerreview">
@@ -222,12 +223,44 @@ else {
 
 <p> &nbsp; &nbsp; &nbsp;</p>
 <p> &nbsp; &nbsp; &nbsp;</p>
-
 </p>
+
+<form method="post">
+<input type=hidden name="searchterm" value="<?php echo $searchterm;?>" >
+<div><p align="right">
+<select name="num" class="selectbox">
+<option value="0" selected="selected">최신순</option></selected>
+<option value="1">오래된순</option>
+<option value="2">별점높은순</option>
+<option value="3">별점낮은순</option>
+</select>
+<button class = "sortButton" type="submit" name="goo" value="정렬" />정렬</p></div>
+</form>
+
 <?php 
+
+if(isset($_POST['goo'])) {
+  $sel_val = $_POST['num'];
+}
+
+if($sel_val=='0') {
+	$query="SELECT * FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID' ORDER BY Review_ID DESC";
+}
+
+elseif($sel_val=='1') {
+	$query="SELECT * FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID' ORDER BY Review_ID";
+}
+
+elseif($sel_val=='2') {
+	$query="SELECT * FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID' ORDER BY BeerScore DESC";
+}
+
+elseif($sel_val=='3') {
+	$query="SELECT * FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID' ORDER BY BeerScore";
+}
+
 $mysqli=mysqli_connect("localhost", "root", "1234", "beerpong");
-$check="SELECT * FROM beer_review WHERE Review_Beer_ID='$SelectedBeerID'";
-$result=$mysqli-> query($check);   //해당 고객 행가져옴
+$result=$mysqli-> query($query);   //해당 고객 행가져옴
 while($row=mysqli_fetch_array($result)){
 	echo '<div class="rank"> <table> <tbody> <tr> ';
 	echo '<td width="35%"> <image src = "https://cdn2.iconfinder.com/data/icons/user-people-4/48/6-512.png" width=100 height=100></td>';
