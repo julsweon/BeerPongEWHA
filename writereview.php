@@ -189,7 +189,7 @@ else{
 //DB 업데이트 확인
 	if($Review_ID_new != $Review_ID_original) {
    		echo "<script> alert('리뷰작성이 완료되었습니다.');</script>";
-		echo "<script> location.href='home.php' </script>";
+		echo "<script> location.href='mypage.php' </script>";
 	}
 	else{
 		echo "<script> alert('리뷰를 다시 작성해주세요.');</script>";
