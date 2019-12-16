@@ -1,0 +1,487 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean');
+body { font-family: "Do Hyeon";}
+#main_title {
+margin-top: 0px;
+height: 80px;
+width: 400px;
+border: 0px;
+background: white;
+color: brown;
+font: 40px;
+}
+/*로그인*/
+.do_login{
+margin-top: 0px;
+height: 20px;
+width: 110px;
+border: 0px;
+background: white;
+color: #222222;
+font-size: 20px;
+font-family:"Do Hyeon";
+}
+.do_join{
+margin-top: 0px;
+height: 20px;
+width: 200px;
+border: 0px;
+background: white;
+color: #222222;
+font-size: 20px;
+font-family:"Do Hyeon";
+}
+/* tab button */
+.tab {
+    background-color: #cdd1d1;
+    color: #787a7a;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    font-size: 25px;
+    width: 33.3%;
+    margin-bottom: 20px;
+font-family:"Do Hyeon";
+}
+#tab1{
+    background-color: brown;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    font-size: 25px;
+    width: 33.3%;
+font-family:"Do Hyeon";
+}
+/* change background color when mouse over */
+.tab:hover {
+    background-color: #d9dbdb;
+}
+
+body{
+align-items: center;
+}
+
+#search_engine {
+height: 40px;
+width: 400px;
+border: 2px solid brown;
+background: #ffffff;
+margin: 0 auto;
+margin-top: 100px;
+font-size: 15px;
+font-family:"Do Hyeon";
+}
+
+.searchbox{
+width: 325px;
+padding: 10px;
+border: 0px;
+outline: none;
+float: left;
+font-size: 15px;
+font-family:"Do Hyeon";
+}
+
+
+#search{
+width: 50px;
+height: 100%;
+border: 0px;
+background: brown;
+outline: none;
+float: right;
+color: white;
+font-size: 15px;
+font-family:"Do Hyeon";
+}
+#hashtags{
+height: 40px;
+width: 300px;
+margin: 10px auto;
+}
+.hashtag{
+border: 0px;
+outline: none;
+background: #ffffff;
+font-size: 15px ;
+}
+.rank{
+margin-top: 30px;
+}
+table{
+width:90%;
+margin: auto;
+}
+/*맥주이름*/
+.ranking{
+border: 0px;
+outline: none;
+font-size: 30px;
+margin: 30 auto;
+background: #ffffff;
+padding: 50px;
+font-family:"Do Hyeon";
+}
+.beername{
+border: 0px;
+outline: none;
+font-size: 30px;
+background: #ffffff;
+font-family:"Do Hyeon";
+}
+.Homebeername{
+border: 0px;
+outline: none;
+font-size: 25px;
+background: #ffffff;
+font-family:"Do Hyeon";
+}
+/*맥주사진*/
+.rank img .beer{
+height: 10;
+width: auto;
+overflow:hidden;
+padding : 10px;
+}
+.Ranknum{
+    font-style: bold;
+    font-size: 40px;
+}
+
+.rank tbody td{
+    font-size: 18px;
+    text-align:center;
+    padding:5px 0;
+    border-bottom:1px solid #CCC; 
+}
+p.score{
+    font-style: bold;
+    font-size: 18px;
+}
+
+/*review2*/
+#reviewtext{
+    text-align: left;
+    font-size: 20px;
+}
+#reviewscore{
+    text-align: left;
+    font-style: bold;
+    font-size: 25px;
+}
+#reviewdate{
+    text-align: left;
+    font: 14px;
+    color: #777777;
+}
+.beerreview{
+text-align: center;
+font-style: bold;
+font-size: 20px;
+}
+#writereview{
+height: 45px;
+width: 350px;
+border: 0px;
+background: brown;
+color: white;
+font-size: 25px;
+font-family:"Do Hyeon";
+}
+.beerimg{
+height: 35%;
+width: 300x;
+overflow:hidden;
+}
+/*review3*/
+#reviewpage{
+height: 40px;
+width: 800px;
+margin: 10px auto;
+text-align: center;
+font-size: 20px;
+}
+.hashtag2{
+border: 0px;
+outline: none;
+background-color: white;
+font-size: 18px;
+}
+#review{
+height: 100px;
+width: 1200px;
+border: 2px solid brown;
+background: white;
+margin: 0 auto;
+margin-top: 100px;
+}
+
+/*home 부분 css*/
+
+.hometable{
+    width : 100%;
+    table-layout: fixed;
+}
+
+.title {
+    text-align: center;
+    font-style: bold;
+    font-size: 35px;
+    padding : 5px;
+    margin: 5px;
+    width : 33%;
+}
+
+.tableimg {
+    width : 33%;
+    height: auto;
+    max-width: 33%;
+    max-height: auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.beerimg {
+    width: auto;
+    max-width : 100%; 
+    max-height: 350px; 
+    padding: 10px;
+}
+
+.point {
+    text-align: center;
+    font-size: 22px;
+    padding : 10px;
+}
+
+.star {
+    width : auto;
+    height: auto;
+    max-width: 33px;
+    max-height: 33px;
+}
+
+.imgreview{
+    font-size: 15px;
+    text-align: center;
+    padding-left : 20px;
+}
+
+.logo {
+    width: auto;
+    height: 48px;
+    border-bottom: 0.5px solid gray;
+}
+
+.logoimg {
+    width : auto;
+    height : 50px;
+    text-align: center;
+    padding : 0px;
+}
+
+.myreview {
+    width : auto;
+    text-align : left;
+    font-style : bold;
+    border-bottom: 0.5px solid gray; 
+    padding : 0px;
+}
+
+.review {
+    width : 400px;
+    text-align : left;
+    font-size:20px;
+    border-bottom: 0.5px solid gray; 
+    padding : 10px;
+}
+.reviewbox{
+width: 1180px;
+height: 30px;
+padding: 12px;
+border: 0px;
+outline: none;
+float: left;
+font-size: 15px;
+}
+
+
+/*myPage 부분 css*/
+.myProfile {
+margin-top: 100px;
+margin-left: 35%;
+margin-right: 35%;
+margin-bottom: 50px;
+padding: 0px auto;
+height: 200px;
+width:400px;
+align-items: center;
+font-size: 20px;
+}
+
+.myMenu{
+align-items: auto;
+margin: 10px auto;
+padding: 0px 50px;
+height: 500px;
+text-align : center;
+}
+
+#myPageMenu{
+margin: 10px 10px;
+padding: 10px 20px;
+height: 430px;
+font-size: 15px;
+background: #f9f2ec;
+}
+
+#preference{
+margin: 40px auto;
+padding: 5px 5px;
+background: #f9f2ec;
+}
+
+/*login page*/
+#login{
+text-align: center;
+font-size: 18px;
+}
+#login_engine {
+height: 40px;
+width: 400px;
+border: 1.5px solid gray;
+background: white;
+margin: 0 auto;
+margin-top: 0px;
+matgin-bottom: 0px;
+}
+.loginbox{
+width: 380px;
+padding: 10px;
+border: 0px;
+outline: none;
+float: left;
+font-size: 15px;
+}
+#loginbutton{
+margin-top: 10px;
+height: 45px;
+width: 400px;
+border: 0px;
+background: brown;
+color: white;
+font-size: 22px;
+font-family:"Do Hyeon";
+}
+#login2{
+text-align: center;
+font-size: 15px;
+color: gray;
+}
+#findprofile{
+text-align: center;
+font-size: 15px;
+color: gray;
+}
+#find{
+margin: 10px 10px;
+padding: 10px 20px;
+height: 450px;
+font-size: 15px;
+background: #f9f2ec;
+}
+
+.findbox{
+width: 325px;
+padding: 9px;
+border: 0px;
+outline: none;
+float: left;
+font-size: 15px;
+}
+
+.hashtagButton{
+border: 2px solid brown;
+text-align:center;
+width: 80px;
+height: 100%;
+padding: 5px 5px;
+background : white;
+outline: none;
+float: left;
+color: black;
+border-radius: 12px;
+margin: 10px 10px;
+font-size: 15px;
+font-family:"Do Hyeon";
+}
+.sortButton{
+position: relative;
+top: -2.5px;
+border: 1px solid brown;
+text-align:center;
+width: 50px;
+height: 30px;
+padding: 5px 0px;
+background: rgba(0,0,0,0);
+outline: none;
+float: right;
+color: black;
+border-radius: 8px;
+margin: 0px 5px;
+font-size: 15px;
+font-family:"Do Hyeon";
+}
+
+#hashtagSet{
+float: center;
+}
+
+.reviewBeer{
+outline: none;
+border: 0px;
+background: #f9f2ec;
+}
+/*맛점수로 필터링*/
+#taste_filter {
+height: 100px;
+width: 100%;
+border: 1px solid brown;
+background: #ffffff;
+margin: 10px 10px;
+margin-top: 150px;
+}
+.filterbox{
+width: 50px;
+padding: 5px;
+border: 1px #d3d3d3;
+outline: none;
+float: left;
+margin:2px;
+font-size: 15px;
+font-family:"Do Hyeon";
+}
+.filterButton{
+text-align:center;
+position: relative;
+top: -2px;
+width: 50px;
+height: 30px;
+padding: 5px 5px;
+background: brown;
+outline: none;
+color: white;
+margin: 5px 5px;
+font-size: 15px;
+border-radius: 5px;
+font-family:"Do Hyeon";
+}
+.selectbox{
+width: 90px;
+height: 25px;
+font-family:"Do Hyeon";
+}

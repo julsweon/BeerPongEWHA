@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>
+.hero-image {
+  background-image: url("long.jpg");
+  height: 250px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+</style>
+<title>BeerPong | 세상의 모든 맥주</title>
+<link rel="stylesheet" href="beerpong.css?after" type="text/css"/>
+<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+</head>
+
+<body>
+<p align="right" style="#222222">
+<button class="do_login" onclick="location.href='login.html'">[로그인]</button> |
+<button class="do_login" onclick="location.href='join.html'">[회원가입]</button>
+</p>
+<div class="hero-image" onclick="location.href='home.php'"></div>
+
+    <button class="tab"onclick="location.href='home.php'">HOME</button>
+    <button class="tab" onclick="location.href='review.php'">REVIEW</button>
+    <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>
+
+<form method="post" action="login_check.php">
+<p id="login">아이디</p>
+<div id="login_engine">
+<div>
+<input type="text" name="my_id" class="loginbox"></div>
+</div>
+
+<p id="login">비밀번호</p>
+<div id="login_engine">
+<div>
+<input type="password" name="my_password" class="loginbox"></div>
+</div>
+
+<p align="center"><button id="loginbutton" onclick="location.href='home.php'">로그인</button></p>
+</form>
+<p id="findprofile">
+<button class="do_join" onclick="location.href='findidpw.php'">아이디찾기 | 비밀번호찾기</button>
+</p>
+</body>
+</html>
