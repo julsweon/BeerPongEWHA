@@ -24,8 +24,8 @@ else {
 	$_SESSION["beerID"]=$SelectedBeerID;
 
 	//맥주랭킹
-	$BeerRank="SELECT Beer_Rank FROM Beers WHERE Beer_ID='$SelectedBeerID'";
-	$SelectedBeerRank=mysqli_fetch_array(mysqli_query($db,$BeerRank));
+	//$BeerRank="SELECT Beer_Rank FROM Beers WHERE Beer_ID='$SelectedBeerID'";
+	//$SelectedBeerRank=mysqli_fetch_array(mysqli_query($db,$BeerRank));
 
 	//맥주 사진
 	$BeerImg="SELECT Beer_Image FROM Beers WHERE Beer_ID='$SelectedBeerID'";
@@ -116,7 +116,7 @@ else {
 }
 </style>
 <title>BeerPong | 세상의 모든 맥주</title>
-<link rel="stylesheet" href="beerpong.css" type="text/css"/>
+<link rel="stylesheet" href="beerpong.css?after" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 </head>
 
@@ -125,7 +125,7 @@ else {
 	session_start();
 	if(isset($_SESSION['id'])){
 ?>
-<p align="right" style="color:#222222">
+<p align="right" style="font-size:20px; color:#222222">
 <?php	echo $_SESSION['id'].'님 안녕하세요';?>
 <button class="do_login" onclick="location.href='logout.php'">[로그아웃]</button>
 </p>
@@ -155,7 +155,7 @@ else {
 ?>
 
 <table class="beerreview">
-	<tr><td rowspan="6" width=10 style="padding : 10px; margin : 10px;"><p class="Ranknum"><?php echo "".$SelectedBeerRank[0]."" ?></p></td><td rowspan="6" width=40%  style="padding : 10px; margin : 10px;" ><img class ="beer" style="max-height:500px; max-width:300px; width: auto;" src="<?php echo"".$SelectedBeerImg[0].""?>"/></td><td><font size="20"><strong> <?php echo "".$SelectedBeerName[0]."" ?> </strong></font></td></tr>
+	<tr><td rowspan="6" width=40%  style="padding : 10px; margin : 10px;" ><img class ="beer" style="max-height:500px; max-width:300px; width: auto;" src="<?php echo"".$SelectedBeerImg[0].""?>"/></td><td><font size="20"><strong> <?php echo "".$SelectedBeerName[0]."" ?> </strong></font></td></tr>
 	<tr><td style="padding : 10px"><p style="font-size:25px"></p>
 	<p> <?php echo'('; echo "".$SelectedBeerOrigin[0].""; echo ')';?> </p> </td></tr>
 	<tr><td><p align = "left"><?php echo "".$SelectedBeerInfo[0]."" ?></p></td></tr>

@@ -12,7 +12,7 @@
 }
 </style>
 <title>BeerPong | 세상의 모든 맥주</title>
-<link rel="stylesheet" href="beerpong.css" type="text/css"/>
+<link rel="stylesheet" href="beerpong.css?after" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 </head>
 
@@ -21,7 +21,7 @@
 	session_start();
 	if(isset($_SESSION['id'])){
 ?>
-<p align="right" style="color:#222222">
+<p align="right" style="font-size:20px; color:#222222">
 <?php	echo $_SESSION['id'].'님 안녕하세요';?>
 <button class="do_login" onclick="location.href='logout.php'">[로그아웃]</button>
 </p>
@@ -164,18 +164,18 @@ $rec_BeerHashFlavor3=mysqli_fetch_array($Hash_Flavor3);
 	<?php
 
 /*Sugar 추천 맥주*/
-		echo '<tr><td><form action="review2.php" name=form method="post">
+		echo '<tr ><td ><form action="review2.php" name=form method="post">
 	<input type=hidden name="searchterm" value="'; print($rec_BeerSugar['Beer_Name']); echo'">
 	<input type="image"  class="logoimg" src="'; print($rec_BeerSugar['Beer_Image']); echo'">    
 </form></td>';
 
-	echo '<td><form action = "clicked_hashtag.php" method="post">
+	echo '<td ><form action = "clicked_hashtag.php" method="post">
 <input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSugar1['Hashtag']); echo '"size="20"></form>
 	<form action = "clicked_hashtag.php" method="post">
 <input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSugar2['Hashtag']); echo '"size="20"></form>
 	<form action = "clicked_hashtag.php" method="post">
 <input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSugar3['Hashtag']); echo '"size="20"></form></td></tr>';
-
+	echo'<tr ><td ><br></td></tr>';
 /*Sour 추천 맥주*/
 	echo '<tr><td><form action="review2.php" name=form method="post">
 	<input type=hidden name="searchterm" value="'; print($rec_BeerSour['Beer_Name']); echo'">
@@ -187,7 +187,7 @@ $rec_BeerHashFlavor3=mysqli_fetch_array($Hash_Flavor3);
 <input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSour2['Hashtag']); echo '"size="20"></form>
 	<form action = "clicked_hashtag.php" method="post">
 <input type="submit" class ="hashtagButton" name="hashtag" value="'; print($rec_BeerHashSour3['Hashtag']); echo '"size="20"></form></td></tr>';
-
+	echo'<tr ><td ><br></td></tr>';
 /*Flavor 추천 맥주*/
 	echo '<tr><td><form action="review2.php" name=form method="post">
 	<input type=hidden name="searchterm" value="'; print($rec_BeerFlavor['Beer_Name']); echo'">

@@ -14,7 +14,7 @@
 
 </style>
 <title>BeerPong | 세상의 모든 맥주</title>
-<link rel="stylesheet" href="beerpong.css" type="text/css"/>
+<link rel="stylesheet" href="beerpong.css?after" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 </head>
 <body>
@@ -22,7 +22,7 @@
 	session_start();
 	if(isset($_SESSION['id'])){
 ?>
-<p align="right" style="color:#222222">
+<p align="right" style="font-size:20px; color:#222222">
 <?php	echo $_SESSION['id'].'님 안녕하세요';?>
 <button class="do_login" onclick="location.href='logout.php'">[로그아웃]</button>
 </p>
@@ -45,7 +45,7 @@
 
 <table>
 <th class="title"><br>WELCOME TO BEERPONG! :D<br> 
-<p style="font-size:15px"><비어퐁에서 오늘의 추천 맥주를 즐겨보세요!><br></p></th>
+<p style="font-size:20px"><비어퐁에서 오늘의 추천 맥주를 즐겨보세요!><br></p></th>
 </table>
 
 <table class = "hometable">
@@ -65,7 +65,7 @@ echo '<form action="review2.php" align="center" name=form method="post">
 echo '
 <form align="center" action = "clicked_Beer.php" method="post">
 <input type="submit" class ="beername" name="beerButton" value="'; print( $row['Beer_Name']); echo '"size="20" ></form>';
-echo '<p align="center"style="font-size:24px"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align=top width=40 height=40>';
+echo '<p align="center"style="font-size:24px"><img class="star" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Plain_Yellow_Star.png" align=top width=auto height=40>';
 {	
 	$check2="SELECT ROUND(AVG(BeerScore), 2) FROM Beer_Review where Review_Beer_ID=$row[Beer_ID]";
 	$result2=$mysqli->query($check2);
@@ -94,7 +94,7 @@ print( $row['Review']);
 		{
 echo '
 <form align="right" action = "clicked_Beer.php" method="post">
-<input type="submit" class ="beername" name="beerButton" value="'; print( $row['Beer_Name']); echo '"size="20" ></form>';
+<input type="submit" class ="Homebeername" name="beerButton" value="'; print( $row['Beer_Name']); echo '"size="20" ></form>';
 		}
 	}
 echo'</form></td></tr>';

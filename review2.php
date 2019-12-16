@@ -4,7 +4,6 @@ $db = mysqli_connect('localhost','root','1234','beerpong');
 $findBeerID="SELECT EXISTS (SELECT Beer_ID FROM beers WHERE Beer_Name='$searchterm') AS SUCCESSS";
 $queryfindBeerID = mysqli_fetch_array(mysqli_query($db, $findBeerID));
 $check_hashtag=mb_substr($searchterm, 0,1);
-
 if(!$searchterm) {
 	echo "<script>alert('맥주 이름을 입력하세요.');</script>";
 	echo "<script>location.href = 'review.php' </script>";
@@ -27,83 +26,66 @@ elseif ($queryfindBeerID[0]==0) {
 	echo "<script>location.href = 'review.php' </script>";
 	exit();	
 }
-
 else {
 //DB에 존재하는 맥주일 경우
 	$BeerIDSQL="SELECT Beer_ID FROM Beers WHERE Beer_NAME='$searchterm'";
 	$BeerID=mysqli_fetch_array(mysqli_query($db,$BeerIDSQL));
 	$SelectedBeerID=$BeerID[0];
 	$_SESSION["beerID"]=$SelectedBeerID;
-
 	//맥주랭킹
-	$BeerRank="SELECT Beer_Rank FROM Beers WHERE Beer_ID='$SelectedBeerID'";
-	$SelectedBeerRank=mysqli_fetch_array(mysqli_query($db,$BeerRank));
-
+	//$BeerRank="SELECT Beer_Rank FROM Beers WHERE Beer_ID='$SelectedBeerID'";
+	//$SelectedBeerRank=mysqli_fetch_array(mysqli_query($db,$BeerRank));
 	//맥주 사진
 	$BeerImg="SELECT Beer_Image FROM Beers WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedBeerImg=mysqli_fetch_array(mysqli_query($db,$BeerImg));
-
 	//맥주 이름
 	$BeerName="SELECT Beer_Name FROM Beers WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedBeerName=mysqli_fetch_array(mysqli_query($db,$BeerName));
-
 	//맥주 원산지
 	$BeerOrigin="SELECT Beer_Origin FROM Beers WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedBeerOrigin=mysqli_fetch_array(mysqli_query($db,$BeerOrigin));
-
 	//해쉬태그 1
 	$BeerHashtag1="SELECT Beer_Hashtag1 FROM Beers WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedBeerHashtag1=mysqli_fetch_array(mysqli_query($db,$BeerHashtag1));
 	$FinalHashtag1=$SelectedBeerHashtag1[0];
 	$printHashtag="SELECT Hashtag FROM Hashtag WHERE Hashtag_ID='$FinalHashtag1'";
 	$printBeerHashtag1=mysqli_fetch_array(mysqli_query($db,$printHashtag));
-
 	//해쉬태그 2
 	$BeerHashtag2="SELECT Beer_Hashtag2 FROM Beers WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedBeerHashtag2=mysqli_fetch_array(mysqli_query($db,$BeerHashtag2));
 	$FinalHashtag2=$SelectedBeerHashtag2[0];
 	$printHashtag="SELECT Hashtag FROM Hashtag WHERE Hashtag_ID='$FinalHashtag2'";
 	$printBeerHashtag2=mysqli_fetch_array(mysqli_query($db,$printHashtag));
-
 	//해쉬태그 3
 	$BeerHashtag3="SELECT Beer_Hashtag3 FROM Beers WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedBeerHashtag3=mysqli_fetch_array(mysqli_query($db,$BeerHashtag3));
 	$FinalHashtag3=$SelectedBeerHashtag3[0];
 	$printHashtag="SELECT Hashtag FROM Hashtag WHERE Hashtag_ID='$FinalHashtag3'";
 	$printBeerHashtag3=mysqli_fetch_array(mysqli_query($db,$printHashtag));
-
 	//맥주 정보
 	$BeerInfo="SELECT Beer_Info FROM Beers Where Beer_ID='$SelectedBeerID'";
 	$SelectedBeerInfo=mysqli_fetch_array(mysqli_query($db,$BeerInfo));
-
 	//맥주 TOTAL SCORE
 	$BeerTotalScore="SELECT Beer_TotalScore FROM Beers WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedBeerTotalScore=mysqli_fetch_array(mysqli_query($db,$BeerTotalScore));
-
 	//맥주 scoring 참여자 수
 	$people="SELECT COUNT(Review_ID) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
 	$Selectedpeople=mysqli_fetch_array(mysqli_query($db,$people));
-
 	//Sour 점수
 	$Beer_Sour="SELECT Taste_Sour FROM Beer_Score WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedSour=mysqli_fetch_array(mysqli_query($db,$Beer_Sour));
-
 	//Sugar 점수
 	$Beer_Sugar="SELECT Taste_Sugar FROM Beer_Score WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedSugar=mysqli_fetch_array(mysqli_query($db,$Beer_Sugar));
-
 	//Flavor 점수
 	$Beer_Flavor="SELECT Taste_Flavor FROM Beer_Score WHERE Beer_ID='$SelectedBeerID'";
 	$SelectedFlavor=mysqli_fetch_array(mysqli_query($db,$Beer_Flavor));
-
 	//review_Sugar 계산
 	$ReviewSugarScore="SELECT ROUND(AVG(Taste_Sugar), 2) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
 	$SelectedReviewSugarScore=mysqli_fetch_array(mysqli_query($db, $ReviewSugarScore));
-
 	//review_Sour 계산
 	$ReviewSourScore="SELECT ROUND(AVG(Taste_Sour), 2) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
 	$SelectedReviewSourScore=mysqli_fetch_array(mysqli_query($db, $ReviewSourScore));
-
 	//review_Flavor 계산
 	$ReviewFlavorScore="SELECT ROUND(AVG(Taste_Flavor), 2) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
 	$SelectedReviewFlavorScore=mysqli_fetch_array(mysqli_query($db, $ReviewFlavorScore));
@@ -111,7 +93,6 @@ else {
 	//review 평점 계산
 	$ReviewTotalScore="SELECT ROUND(AVG(BeerScore), 2) FROM Beer_Review WHERE Review_Beer_ID='$SelectedBeerID'";
 	$SelectedReviewTotalScore=mysqli_fetch_array(mysqli_query($db,$ReviewTotalScore));
-
 ?>
 
 <!DOCTYPE html>
@@ -128,7 +109,7 @@ else {
 }
 </style>
 <title>BeerPong | 세상의 모든 맥주</title>
-<link rel="stylesheet" href="beerpong.css" type="text/css"/>
+<link rel="stylesheet" href="beerpong.css?after" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 </head>
 
@@ -137,7 +118,7 @@ else {
 	session_start();
 	if(isset($_SESSION['id'])){
 ?>
-<p align="right" style="color:#222222">
+<p align="right" style="font-size:20px; color:#222222">
 <?php	echo $_SESSION['id'].'님 안녕하세요';?>
 <button class="do_login" onclick="location.href='logout.php'">[로그아웃]</button>
 </p>
@@ -166,7 +147,7 @@ else {
 ?>
 
 <table class="beerreview">
-	<tr><td rowspan="6" width=10 style="padding : 10px; margin : 10px;"><p class="Ranknum"><?php echo "".$SelectedBeerRank[0]."" ?></p></td><td rowspan="6" width=40%  style="padding : 10px; margin : 10px;" ><img class ="beer" style="max-height:500px; max-width:300px; width: auto;" src="<?php echo"".$SelectedBeerImg[0].""?>"/></td><td><font size="20"><strong> <?php echo "".$SelectedBeerName[0]."" ?> </strong></font></td></tr>
+	<tr><td rowspan="6" width=40%  style="padding : 10px; margin : 10px;" ><img class ="beer" style="max-height:500px; max-width:300px; width: auto;" src="<?php echo"".$SelectedBeerImg[0].""?>"/></td><td><font size="20"><strong> <?php echo "".$SelectedBeerName[0]."" ?> </strong></font></td></tr>
 	<tr><td style="padding : 10px"><p style="font-size:25px"></p>
 	<p> <?php echo'('; echo "".$SelectedBeerOrigin[0].""; echo ')';?> </p> </td></tr>
 	<tr><td><p align = "left"><?php echo "".$SelectedBeerInfo[0]."" ?></p></td></tr>
@@ -253,10 +234,10 @@ while($row=mysqli_fetch_array($result)){
 	echo '<td width="65%">';
 	echo '<p id="reviewscore">'; print($row['Reviewer_ID']); echo '<br></p>';
 	echo '<p id="reviewdate">';
-	echo '당도 : '; print($row['Taste_Sugar']);	echo '|';
-	echo '산미 : '; print($row['Taste_Sour']);	echo '|';
-	echo '풍미 : '; print($row['Taste_Flavor']);	echo '|';
-	echo '총점 : '; print($row['BeerScore']);	echo '<br></p>';
+	echo ' 당도 : '; print($row['Taste_Sugar']);	echo ' | ';
+	echo ' 산미 : '; print($row['Taste_Sour']);	echo ' | ';
+	echo ' 풍미 : '; print($row['Taste_Flavor']);	echo ' | ';
+	echo ' 총점 : '; print($row['BeerScore']);	echo '<br></p>';
 	echo '<p id="reviewtext">';print($row['Review']);echo '</p>';
 	echo '</p></td></table>';
 }

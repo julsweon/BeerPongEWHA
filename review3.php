@@ -56,7 +56,7 @@ input[type="checkbox"]:checked + label span {
 }
 </style>
 <title>BeerPong | 세상의 모든 맥주</title>
-<link rel="stylesheet" href="beerpong.css" type="text/css"/>
+<link rel="stylesheet" href="beerpong.css?after" type="text/css"/>
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 </head>
 
@@ -71,7 +71,7 @@ input[type="checkbox"]:checked + label span {
 <?php
   if(isset($_SESSION['id'])){
 ?>
-<p align="right" style="color:#222222">
+<p align="right" style="font-size:20px; color:#222222">
 <?php echo $_SESSION['id'].'님 안녕하세요';?>
 <button class="do_login" onclick="location.href='logout.php'">[로그아웃]</button>
 </p>
@@ -91,7 +91,8 @@ input[type="checkbox"]:checked + label span {
     <button class="tab"onclick="location.href='home.php'">HOME</button>
     <button id="tab1" onclick="location.href='review.php'">REVIEW</button>
     <button class="tab" onclick="location.href='mypage.php'">MYPAGE</button>
-</div>
+
+    </div>
 
 <div id="REVIEW" class="content">
 <?php

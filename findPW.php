@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+<title>BeerPong | 세상의 모든 맥주</title>
+<link rel="stylesheet" href="beerpong.css?after" type="text/css"/>
+<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
 </head>
 <body>
 <?php
@@ -30,8 +33,18 @@ elseif($row['Customer_Email']!=$email||$row['Customer_Name']!=$name){
 	exit();
 }
 elseif($row['Customer_ID']==$id&&$row['Customer_Email']==$email&&$row['Customer_Name']==$name){
-	$msg="PW: ".$row['Customer_PW'];
-	echo "<script> alert('$msg');</script>";
+	$ch='0123456789abcdefghijklmnoparstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$chlen=strlen($ch);
+	$randomPW='';
+	for($i=0;$i<6;$i++){
+		$randomPW.=$ch[rand(0,$chlen-1)];
+	}
+	$changePW=md5($randomPW);
+	$changequery="UPDATE Customers SET Customer_PW='$changePW' WHERE Customer_ID='$id'";
+	$mysqli->query($changequery);
+	$msg="임시 비밀번호: ".$randomPW;
+	$comment='\n\n로그인 후 비밀번호를 변경해주세요';
+	echo "<script> alert('$msg$comment');</script>";
 	echo "<script> location.href='findidpw.php' </script>";
 }
 
