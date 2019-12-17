@@ -15,7 +15,7 @@ border: 2px solid brown;
 text-align:center;
 width: 50px;
 height: 30px;
-line-height:20px;
+line-height:25px;
 background : white;
 outline: none;
 float: left;

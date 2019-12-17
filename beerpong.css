@@ -133,6 +133,13 @@ font-size: 30px;
 background: #ffffff;
 font-family:"Do Hyeon";
 }
+.deletereview{
+border: 0px;
+outline: none;
+font-size: 15px;
+background: #f9f2ec;
+font-family:"Do Hyeon";
+}
 .Homebeername{
 border: 0px;
 outline: none;
@@ -376,13 +383,6 @@ border: 0px;
 background: brown;
 color: white;
 font-size: 22px;
-font-family:"Do Hyeon";
-}
-.deletereview{
-border: 0px;
-outline: none;
-font-size: 15px;
-background: #f9f2ec;
 font-family:"Do Hyeon";
 }
 #login2{
