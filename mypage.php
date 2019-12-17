@@ -10,6 +10,22 @@
   background-size: cover;
   position: relative;
 }
+#deleteButton{
+border: 2px solid brown;
+text-align:center;
+width: 50px;
+height: 30px;
+line-height:20px;
+background : white;
+outline: none;
+float: left;
+position : absolute;
+color: black;
+border-radius: 12px;
+font-size: 15px;
+margin : -30px;
+font-family:"Do Hyeon";
+}
 </style>
 <title>BeerPong | 세상의 모든 맥주</title>
 <link rel="stylesheet" href="beerpong.css?after" type="text/css"/>
@@ -231,7 +247,7 @@ $rec_BeerHashFlavor3=mysqli_fetch_array($Hash_Flavor3);
 	  				<td class="myreview" align="left" style="font-size:20px; "> - <?php echo($row_review['Review'])?> 
 	  				<form align="right" action = "deletereview.php" method="post">
 					<input type=hidden name="deleteButton" style="font-size:20px" value=<?php echo($row_review['Review_ID'])?> >
-					<input type="submit" class ="deletereview" name="delete" value="[삭제]"size="20" >
+					<input type="submit" class ="deletereview" id="deleteButton" name="delete" value="[삭제]"size="20" >
 					</form></td>
 	  			</tr> 
 	  				<?php } ?>
